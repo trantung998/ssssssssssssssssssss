@@ -1,5 +1,7 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniRx", "UniRx.csproj", "{57B12D50-7440-4DA9-17AD-57D1E5D68D66}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{3CC652C2-464B-FAE5-85F1-90B8BC398AC1}"
 EndProject
 Global
@@ -8,6 +10,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57B12D50-7440-4DA9-17AD-57D1E5D68D66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57B12D50-7440-4DA9-17AD-57D1E5D68D66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57B12D50-7440-4DA9-17AD-57D1E5D68D66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57B12D50-7440-4DA9-17AD-57D1E5D68D66}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3CC652C2-464B-FAE5-85F1-90B8BC398AC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3CC652C2-464B-FAE5-85F1-90B8BC398AC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CC652C2-464B-FAE5-85F1-90B8BC398AC1}.Release|Any CPU.ActiveCfg = Release|Any CPU

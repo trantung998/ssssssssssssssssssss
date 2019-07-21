@@ -1,5 +1,6 @@
 using Entitas;
 using Entitas.CodeGeneration.Attributes;
+using UnityEngine;
 
 namespace Character
 {
@@ -26,5 +27,11 @@ namespace Character
         public float attackDamage;
         public float health;
         public float armor;
+    }
+
+    [Game]
+    public class PositionComponent : IComponent
+    {
+        public Vector3 value;
     }
 }

@@ -10,16 +10,31 @@ public static class GameComponentsLookup {
 
     public const int CharacterCharacterMetaData = 0;
     public const int CharacterCharacterStats = 1;
+    public const int CharacterPosition = 2;
+    public const int CombatNormalAttackData = 3;
+    public const int GameTimeTick = 4;
+    public const int ViewAsset = 5;
+    public const int ViewCharacterView = 6;
 
-    public const int TotalComponents = 2;
+    public const int TotalComponents = 7;
 
     public static readonly string[] componentNames = {
         "CharacterCharacterMetaData",
-        "CharacterCharacterStats"
+        "CharacterCharacterStats",
+        "CharacterPosition",
+        "CombatNormalAttackData",
+        "GameTimeTick",
+        "ViewAsset",
+        "ViewCharacterView"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(Character.CharacterMetaDataComponent),
-        typeof(Character.CharacterStatsComponent)
+        typeof(Character.CharacterStatsComponent),
+        typeof(Character.PositionComponent),
+        typeof(Combat.NormalAttackDataComponent),
+        typeof(GameTime.TickComponent),
+        typeof(View.AssetComponent),
+        typeof(View.CharacterViewComponent)
     };
 }

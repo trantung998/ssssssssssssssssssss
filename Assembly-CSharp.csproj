@@ -62,6 +62,11 @@
     <Compile Include="Assets\Generated\Feature.cs" />
     <Compile Include="Assets\Generated\Game\Components\GameCharacterCharacterMetaDataComponent.cs" />
     <Compile Include="Assets\Generated\Game\Components\GameCharacterCharacterStatsComponent.cs" />
+    <Compile Include="Assets\Generated\Game\Components\GameCharacterPositionComponent.cs" />
+    <Compile Include="Assets\Generated\Game\Components\GameCombatNormalAttackDataComponent.cs" />
+    <Compile Include="Assets\Generated\Game\Components\GameGameTimeTickComponent.cs" />
+    <Compile Include="Assets\Generated\Game\Components\GameViewAssetComponent.cs" />
+    <Compile Include="Assets\Generated\Game\Components\GameViewCharacterViewComponent.cs" />
     <Compile Include="Assets\Generated\Game\GameAttribute.cs" />
     <Compile Include="Assets\Generated\Game\GameComponentsLookup.cs" />
     <Compile Include="Assets\Generated\Game\GameContext.cs" />
@@ -72,9 +77,29 @@
     <Compile Include="Assets\Generated\Input\InputContext.cs" />
     <Compile Include="Assets\Generated\Input\InputEntity.cs" />
     <Compile Include="Assets\Generated\Input\InputMatcher.cs" />
+    <Compile Include="Assets\Generated\Service\Components\ServiceViewViewServiceComponent.cs" />
+    <Compile Include="Assets\Generated\Service\ServiceAttribute.cs" />
+    <Compile Include="Assets\Generated\Service\ServiceComponentsLookup.cs" />
+    <Compile Include="Assets\Generated\Service\ServiceContext.cs" />
+    <Compile Include="Assets\Generated\Service\ServiceEntity.cs" />
+    <Compile Include="Assets\Generated\Service\ServiceMatcher.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterComponents.cs" />
     <Compile Include="Assets\Scripts\Combat\CombatComponents.cs" />
+    <Compile Include="Assets\Scripts\Combat\NormalAttackProcessSystem.cs" />
     <Compile Include="Assets\Scripts\GameplayController.cs" />
+    <Compile Include="Assets\Scripts\GameplayServices\GameplayServices.cs" />
+    <Compile Include="Assets\Scripts\GameplayServices\View\InitViewService.cs" />
+    <Compile Include="Assets\Scripts\GameplayServices\View\UnityViewService.cs" />
+    <Compile Include="Assets\Scripts\GameplayServices\View\ViewServiceComponent.cs" />
+    <Compile Include="Assets\Scripts\GameTime\Components.cs" />
+    <Compile Include="Assets\Scripts\GameTime\UpdateTickSystem.cs" />
+    <Compile Include="Assets\Scripts\Libs\ObjectPool.cs" />
+    <Compile Include="Assets\Scripts\RootSystems.cs" />
+    <Compile Include="Assets\Scripts\View\Character\DummyCharacterView.cs" />
+    <Compile Include="Assets\Scripts\View\Components.cs" />
+    <Compile Include="Assets\Scripts\View\CreateAssetViewSystem.cs" />
+    <Compile Include="Assets\Scripts\View\IViewController.cs" />
+    <Compile Include="Assets\Scripts\View\UnityViewController.cs" />
     <None Include="Assets\Entitas\Entitas.xml" />
     <None Include="Assets\Entitas\LICENSE.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
@@ -674,6 +699,12 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>I:/Unity/2018.4.3f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{57B12D50-7440-4DA9-17AD-57D1E5D68D66}</Project>
+      <Name>UniRx</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
