@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using GameplayServices;
+using GameplayServices.Input;
 using UnityEngine;
 using View;
 
@@ -15,7 +14,13 @@ public class GameplayController : MonoBehaviour
         Application.targetFrameRate = 60;
         _contexts = Contexts.sharedInstance;
 
-        var gamplayServices = new GameplayServices(new UnityViewService());
+        var gamplayServices = new GameplayServices.GameplayServices()
+        {
+            InputService = new UnityInputService(_contexts),
+            ViewService = new UnityViewService()
+        };
+
+
         var regService = new ServiceRegistrationSystems(_contexts, gamplayServices);
         regService.Initialize();
 

@@ -1,26 +1,26 @@
 using Entitas;
+using GameplayServices.Input;
 using View;
 
-
-public class GameplayServices
+namespace GameplayServices
 {
-    public readonly IViewService ViewService;
-
-    public GameplayServices(IViewService viewService)
+    public class GameplayServices
     {
-        ViewService = viewService;
-    }
-}
-
-public class ServiceRegistrationSystems : Feature
-{
-    public ServiceRegistrationSystems(Contexts contexts, GameplayServices services) : base("GameplayServices")
-    {
-        Add(new InitViewService(contexts.service, services.ViewService));
+        public IViewService ViewService;
+        public IInputService InputService;
     }
 
-    public sealed override Entitas.Systems Add(ISystem system)
+    public class ServiceRegistrationSystems : Feature
     {
-        return base.Add(system);
+        public ServiceRegistrationSystems(Contexts contexts, GameplayServices services) : base("GameplayServices")
+        {
+            Add(new InitViewService(contexts.service, services.ViewService));
+            Add(new InitInputSystem(contexts, services.InputService));
+        }
+
+        public sealed override Entitas.Systems Add(ISystem system)
+        {
+            return base.Add(system);
+        }
     }
 }

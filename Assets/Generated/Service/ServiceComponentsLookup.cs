@@ -8,15 +8,18 @@
 //------------------------------------------------------------------------------
 public static class ServiceComponentsLookup {
 
-    public const int ViewViewService = 0;
+    public const int GameplayServicesInputInputService = 0;
+    public const int ViewViewService = 1;
 
-    public const int TotalComponents = 1;
+    public const int TotalComponents = 2;
 
     public static readonly string[] componentNames = {
+        "GameplayServicesInputInputService",
         "ViewViewService"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(GameplayServices.Input.InputServiceComponent),
         typeof(View.ViewServiceComponent)
     };
 }
