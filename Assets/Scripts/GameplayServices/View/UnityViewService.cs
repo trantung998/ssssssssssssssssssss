@@ -13,27 +13,28 @@ namespace View
             {
                 _transformParent = new GameObject("Game Play Root View").transform;
                 _transformParent.position = Vector3.zero;
+            }
 
-                var gameEntity = (GameEntity) entity;
-                if (gameEntity.hasViewAsset)
+            var gameEntity = (GameEntity) entity;
+            if (gameEntity.hasViewAsset)
+            {
+                var assetId = gameEntity.viewAsset.value;
+
+                var viewObject = ObjectPool.Spawn("Prefabs/" + assetId.ToString());
+                if (viewObject == null)
                 {
-                    var assetId = gameEntity.viewAsset.value;
+                    entity.Destroy();
+                    return;
+                }
 
-                    var viewObject = ObjectPool.Spawn("Prefab/Character_" + assetId.ToString());
-                    if (viewObject == null)
-                    {
-                        entity.Destroy();
-                        return;
-                    }
+                viewObject.transform.SetParent(_transformParent);
+                viewObject.transform.position = gameEntity.characterPosition.value;
 
-                    viewObject.transform.SetParent(_transformParent);
-                    viewObject.transform.position = gameEntity.characterPosition.value;
-
-                    var viewController = viewObject.GetComponent<IViewController>();
-                    if (viewController != null)
-                    {
-                        viewController.InitializeView(contexts, entity);
-                    }
+                var viewController = viewObject.GetComponent<IViewController>();
+                if (viewController != null)
+                {
+                    gameEntity.AddViewCharacterView(viewController);
+                    viewController.InitializeView(contexts, entity);
                 }
             }
         }

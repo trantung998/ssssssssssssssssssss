@@ -7,9 +7,12 @@ namespace Combat
     public class NormalAttackProcessSystem : ReactiveSystem<GameEntity>
     {
         private readonly GameContext _gameContext;
+        private readonly IRandomService _randomService;
 
         public NormalAttackProcessSystem(Contexts contexts) : base(contexts.game)
         {
+            _gameContext = contexts.game;
+            _randomService = contexts.service.randomService.instance;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -48,8 +51,25 @@ namespace Combat
             //critical...
             //Life Steal...
             //etc
-            target.characterCharacterStats.health -=
-                (source.characterCharacterStats.attackDamage - target.characterCharacterStats.armor);
+            ProcessCritical(source.characterCharacterStats.value, ref target.characterCharacterStats.value);
+        }
+
+        private void ProcessCritical(CharacterStat source, ref CharacterStat target)
+        {
+            var damage = source.attackDamage;
+            var criticalChance = source.criticalChance;
+            if (criticalChance > 0)
+            {
+                var random = _randomService.GetFloat();
+
+
+                if (criticalChance <= random)
+                {
+                    //critical trigger
+                    damage *= source.criticalDamageFactor;
+                    target.health -= (damage - target.armor);
+                }
+            }
         }
     }
 }

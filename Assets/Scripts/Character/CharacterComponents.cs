@@ -24,12 +24,10 @@ namespace Character
     [Game]
     public class CharacterStatsComponent : IComponent
     {
-        public float attackDamage;
-        public float health;
-        public float armor;
+        public CharacterStat value;
     }
 
-    [Game]
+    [Game, Event(EventTarget.Self)]
     public class PositionComponent : IComponent
     {
         public Vector3 value;

@@ -25,8 +25,8 @@ namespace GameplayServices.Input
                 inputEntity.AddInputData(new TestNormalAttackInput()
                 {
                     Type = InputType.TestNormalAttack,
-                    sourceId = 0,
-                    targetId = 1,
+                    sourceId = 1,
+                    targetId = 2,
                 });
             }
         }

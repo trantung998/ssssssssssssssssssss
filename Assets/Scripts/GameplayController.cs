@@ -1,5 +1,6 @@
 ﻿using GameplayServices;
 using GameplayServices.Input;
+using LeopotamGroup.Math;
 using UnityEngine;
 using View;
 
@@ -17,9 +18,9 @@ public class GameplayController : MonoBehaviour
         var gamplayServices = new GameplayServices.GameplayServices()
         {
             InputService = new UnityInputService(_contexts),
-            ViewService = new UnityViewService()
+            ViewService = new UnityViewService(),
+            RandomService = new RngFast()
         };
-
 
         var regService = new ServiceRegistrationSystems(_contexts, gamplayServices);
         regService.Initialize();

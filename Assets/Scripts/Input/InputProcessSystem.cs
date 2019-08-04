@@ -29,8 +29,13 @@ namespace Input
             {
                 if (inputEntity.inputData.value.Type == InputType.TestNormalAttack)
                 {
+                    var normalAttackInput = (TestNormalAttackInput) inputEntity.inputData.value;
                     var attackRequest = _gameContext.CreateEntity();
-                    attackRequest.AddCombatNormalAttackData(new NormalAttackData(){});
+                    attackRequest.AddCombatNormalAttackData(new NormalAttackData()
+                    {
+                        source = normalAttackInput.sourceId,
+                        target = normalAttackInput.targetId,
+                    });
                 }
 
                 inputEntity.Destroy();

@@ -11,21 +11,17 @@ public partial class GameEntity {
     public Character.CharacterStatsComponent characterCharacterStats { get { return (Character.CharacterStatsComponent)GetComponent(GameComponentsLookup.CharacterCharacterStats); } }
     public bool hasCharacterCharacterStats { get { return HasComponent(GameComponentsLookup.CharacterCharacterStats); } }
 
-    public void AddCharacterCharacterStats(float newAttackDamage, float newHealth, float newArmor) {
+    public void AddCharacterCharacterStats(Character.CharacterStat newValue) {
         var index = GameComponentsLookup.CharacterCharacterStats;
         var component = (Character.CharacterStatsComponent)CreateComponent(index, typeof(Character.CharacterStatsComponent));
-        component.attackDamage = newAttackDamage;
-        component.health = newHealth;
-        component.armor = newArmor;
+        component.value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceCharacterCharacterStats(float newAttackDamage, float newHealth, float newArmor) {
+    public void ReplaceCharacterCharacterStats(Character.CharacterStat newValue) {
         var index = GameComponentsLookup.CharacterCharacterStats;
         var component = (Character.CharacterStatsComponent)CreateComponent(index, typeof(Character.CharacterStatsComponent));
-        component.attackDamage = newAttackDamage;
-        component.health = newHealth;
-        component.armor = newArmor;
+        component.value = newValue;
         ReplaceComponent(index, component);
     }
 
