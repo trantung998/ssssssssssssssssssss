@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Character;
 using Entitas;
+using Indicator;
 
 namespace Combat
 {
@@ -58,18 +59,25 @@ namespace Combat
         {
             var damage = source.attackDamage;
             var criticalChance = source.criticalChance;
+            var damageIndicator = new DamageIndicatorData() {type = IndicatorType.Damage};
             if (criticalChance > 0)
             {
                 var random = _randomService.GetFloat();
-
 
                 if (criticalChance <= random)
                 {
                     //critical trigger
                     damage *= source.criticalDamageFactor;
-                    target.health -= (damage - target.armor);
+                    damageIndicator.isCriticalHit = true;
                 }
             }
+
+            var actualDamage = (damage - target.armor);
+            damageIndicator.value = actualDamage;
+            target.health -= actualDamage;
+
+            var damageIndicatorEntity = _gameContext.CreateEntity();
+            damageIndicatorEntity.AddIndicatorIndicator(damageIndicator);
         }
     }
 }

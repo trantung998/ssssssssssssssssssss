@@ -11,6 +11,7 @@ namespace View
     public enum AssetId
     {
         DummyCharacter,
+        DamageView,
     }
 
     [Game]

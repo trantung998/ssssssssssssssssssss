@@ -1,5 +1,6 @@
 using Character;
 using Combat;
+using EntityDestroyer;
 using GameTime;
 using Input;
 using View;
@@ -10,6 +11,8 @@ public class RootSystems : Feature
     {
         Add(new GameplayInput(contexts));
         Add(new GameSystems(contexts));
+
+        Add(new DestroyEntitySystem(contexts));
     }
 }
 
@@ -24,6 +27,8 @@ public class GameSystems : Feature
         Add(new NormalAttackProcessSystem(contexts));
 
         Add(new UpdateCharacterSystem(contexts));
+        Add(new FollowCharacterSystem(contexts));
+        Add(new SpawnIndicatorSystem(contexts));
     }
 }
 

@@ -10,19 +10,22 @@ public static class ServiceComponentsLookup {
 
     public const int GameplayServicesInputInputService = 0;
     public const int RandomService = 1;
-    public const int ViewViewService = 2;
+    public const int TimeServiceCompoponent = 2;
+    public const int ViewViewService = 3;
 
-    public const int TotalComponents = 3;
+    public const int TotalComponents = 4;
 
     public static readonly string[] componentNames = {
         "GameplayServicesInputInputService",
         "RandomService",
+        "TimeServiceCompoponent",
         "ViewViewService"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(GameplayServices.Input.InputServiceComponent),
         typeof(RandomServiceComponent),
+        typeof(TimeServiceCompoponent),
         typeof(View.ViewServiceComponent)
     };
 }

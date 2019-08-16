@@ -10,22 +10,28 @@ public static class GameComponentsLookup {
 
     public const int CharacterCharacterMetaData = 0;
     public const int CharacterCharacterStats = 1;
-    public const int CharacterPosition = 2;
-    public const int CharacterPositionListener = 3;
-    public const int CombatNormalAttackData = 4;
-    public const int GameTimeTick = 5;
-    public const int ViewAsset = 6;
-    public const int ViewCharacterView = 7;
+    public const int CharacterFollowCharacter = 2;
+    public const int CharacterPosition = 3;
+    public const int CharacterPositionListener = 4;
+    public const int CombatNormalAttackData = 5;
+    public const int Destroyed = 6;
+    public const int GameTimeTick = 7;
+    public const int IndicatorIndicator = 8;
+    public const int ViewAsset = 9;
+    public const int ViewCharacterView = 10;
 
-    public const int TotalComponents = 8;
+    public const int TotalComponents = 11;
 
     public static readonly string[] componentNames = {
         "CharacterCharacterMetaData",
         "CharacterCharacterStats",
+        "CharacterFollowCharacter",
         "CharacterPosition",
         "CharacterPositionListener",
         "CombatNormalAttackData",
+        "Destroyed",
         "GameTimeTick",
+        "IndicatorIndicator",
         "ViewAsset",
         "ViewCharacterView"
     };
@@ -33,10 +39,13 @@ public static class GameComponentsLookup {
     public static readonly System.Type[] componentTypes = {
         typeof(Character.CharacterMetaDataComponent),
         typeof(Character.CharacterStatsComponent),
+        typeof(Character.FollowCharacterComponent),
         typeof(Character.PositionComponent),
         typeof(CharacterPositionListenerComponent),
         typeof(Combat.NormalAttackDataComponent),
+        typeof(DestroyedComponent),
         typeof(GameTime.TickComponent),
+        typeof(Indicator.IndicatorComponent),
         typeof(View.AssetComponent),
         typeof(View.CharacterViewComponent)
     };

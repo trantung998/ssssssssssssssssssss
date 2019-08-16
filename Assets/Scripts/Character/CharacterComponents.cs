@@ -32,4 +32,11 @@ namespace Character
     {
         public Vector3 value;
     }
+
+    [Game]
+    public class FollowCharacterComponent : IComponent
+    {
+        public int id;
+        public Vector2 offSet;
+    }
 }
