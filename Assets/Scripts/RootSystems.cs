@@ -13,6 +13,8 @@ public class RootSystems : Feature
         Add(new GameSystems(contexts));
 
         Add(new DestroyEntitySystem(contexts));
+
+        Add(new TeardownGameSystem(contexts));
     }
 }
 
@@ -24,11 +26,21 @@ public class GameSystems : Feature
 
         Add(new UpdateTickSystem(contexts));
         Add(new CreateAssetViewSystem(contexts));
+        Add(new ProcessAddEffectCommand(contexts));
+
+        Add(new GameEventSystems(contexts));
+
         Add(new NormalAttackProcessSystem(contexts));
+        Add(new ProcessSlowEffectSystem(contexts));
+        Add(new StunProcessSystem(contexts));
 
         Add(new UpdateCharacterSystem(contexts));
+        Add(new ProcessMovementSystem(contexts));
+
         Add(new FollowCharacterSystem(contexts));
         Add(new SpawnIndicatorSystem(contexts));
+
+        Add(new BehaviourTreeFeature(contexts));
     }
 }
 
@@ -38,5 +50,14 @@ public class GameplayInput : Feature
     {
         Add(new UpdateInputSystem(contexts));
         Add(new InputProcessSystem(contexts));
+    }
+}
+
+public class BehaviourTreeFeature : Feature
+{
+    public BehaviourTreeFeature(Contexts contexts)
+    {
+        Add(new InitBehaviourTreeSystem(contexts));
+        Add(new UpdateBehaviourTreeSystem(contexts));
     }
 }

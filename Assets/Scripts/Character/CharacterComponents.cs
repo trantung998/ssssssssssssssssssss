@@ -1,6 +1,7 @@
 using Entitas;
 using Entitas.CodeGeneration.Attributes;
 using UnityEngine;
+using EventType = Entitas.CodeGeneration.Attributes.EventType;
 
 namespace Character
 {
@@ -27,10 +28,17 @@ namespace Character
         public CharacterStat value;
     }
 
-    [Game, Event(EventTarget.Self)]
+    [Game, Event(EventTarget.Self, EventType.Added)]
     public class PositionComponent : IComponent
     {
         public Vector3 value;
+    }
+
+    [Game]
+    public class MovementComponent : IComponent
+    {
+        public float speed;
+        public Vector2 direction;
     }
 
     [Game]

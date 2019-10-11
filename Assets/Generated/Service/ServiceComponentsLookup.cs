@@ -8,14 +8,16 @@
 //------------------------------------------------------------------------------
 public static class ServiceComponentsLookup {
 
-    public const int GameplayServicesInputInputService = 0;
-    public const int RandomService = 1;
-    public const int TimeServiceCompoponent = 2;
-    public const int ViewViewService = 3;
+    public const int BTService = 0;
+    public const int GameplayServicesInputInputService = 1;
+    public const int RandomService = 2;
+    public const int TimeServiceCompoponent = 3;
+    public const int ViewViewService = 4;
 
-    public const int TotalComponents = 4;
+    public const int TotalComponents = 5;
 
     public static readonly string[] componentNames = {
+        "BTService",
         "GameplayServicesInputInputService",
         "RandomService",
         "TimeServiceCompoponent",
@@ -23,6 +25,7 @@ public static class ServiceComponentsLookup {
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(BTServiceComponent),
         typeof(GameplayServices.Input.InputServiceComponent),
         typeof(RandomServiceComponent),
         typeof(TimeServiceCompoponent),

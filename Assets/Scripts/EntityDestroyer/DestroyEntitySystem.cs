@@ -5,6 +5,7 @@ namespace EntityDestroyer
     public class DestroyEntitySystem : ICleanupSystem, ITearDownSystem
     {
         private readonly IGroup<GameEntity> _destroyedGameEntities;
+        private readonly IGroup<GameEntity> _delayDestroyedGameEntities;
 
         private readonly IGroup<InputEntity> _destroyedInputEntities;
 
@@ -18,24 +19,46 @@ namespace EntityDestroyer
             _inputContext = contexts.input;
 
             _timeService = contexts.service.timeServiceCompoponent.instance;
-            
-            _destroyedGameEntities = _gameContext.GetGroup(GameMatcher.Destroyed);
-            _destroyedInputEntities = _inputContext.GetGroup(InputMatcher.Destroyed);
+
+            _destroyedGameEntities =
+                _gameContext.GetGroup(GameMatcher.EntityDestroyed);
+
+            _delayDestroyedGameEntities =
+                _gameContext.GetGroup(
+                    GameMatcher.DelayEntityDestroyed);
+
+            _destroyedInputEntities = _inputContext.GetGroup(InputMatcher.DelayEntityDestroyed);
         }
 
         public void Cleanup()
         {
+            foreach (var gameEntity in _delayDestroyedGameEntities.GetEntities())
+            {
+                if (gameEntity.delayEntityDestroyed.IsTimeOut(_timeService.DeltaTime))
+                {
+                    gameEntity.isEntityDestroyed = true;
+                }
+            }
+
             foreach (var e in _destroyedGameEntities.GetEntities())
             {
-                if (e.destroyed.IsTimeOut(_timeService.DeltaTime))
+                if (e.isEntityDestroyed)
+                {
+                    DestroyView(e);
                     e.Destroy();
+                }
             }
 
             foreach (var e in _destroyedInputEntities.GetEntities())
             {
-                if (e.destroyed.IsTimeOut(_timeService.DeltaTime))
+                if (e.delayEntityDestroyed.IsTimeOut(_timeService.DeltaTime))
                     e.Destroy();
             }
+        }
+
+        private void DestroyView(GameEntity gameEntity)
+        {
+            if (gameEntity.hasViewCharacterView) gameEntity.viewCharacterView.value.OnEntityDestroyed();
         }
 
         public void TearDown()

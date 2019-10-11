@@ -21,6 +21,7 @@ public class GameplayController : MonoBehaviour
             ViewService = new UnityViewService(),
             RandomService = new RngFast(),
             TimeService = new UnityTimeService(),
+            BtService = new BTService(),
         };
 
         var regService = new ServiceRegistrationSystems(_contexts, gamplayServices);

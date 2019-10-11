@@ -8,44 +8,71 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int CharacterCharacterMetaData = 0;
-    public const int CharacterCharacterStats = 1;
-    public const int CharacterFollowCharacter = 2;
-    public const int CharacterPosition = 3;
-    public const int CharacterPositionListener = 4;
-    public const int CombatNormalAttackData = 5;
-    public const int Destroyed = 6;
-    public const int GameTimeTick = 7;
-    public const int IndicatorIndicator = 8;
-    public const int ViewAsset = 9;
-    public const int ViewCharacterView = 10;
+    public const int AddEffectCommand = 0;
+    public const int BT = 1;
+    public const int CharacterCharacterMetaData = 2;
+    public const int CharacterCharacterStats = 3;
+    public const int CharacterFollowCharacter = 4;
+    public const int CharacterMovement = 5;
+    public const int CharacterPosition = 6;
+    public const int CharacterPositionListener = 7;
+    public const int CombatEffectStatus = 8;
+    public const int CombatNormalAttackData = 9;
+    public const int DelayEntityDestroyed = 10;
+    public const int EffectData = 11;
+    public const int EntityDestroyed = 12;
+    public const int GameTimeTick = 13;
+    public const int IndicatorIndicator = 14;
+    public const int SlowEffectActive = 15;
+    public const int SlowEffectRequest = 16;
+    public const int StunEffectActive = 17;
+    public const int ViewAsset = 18;
+    public const int ViewCharacterView = 19;
 
-    public const int TotalComponents = 11;
+    public const int TotalComponents = 20;
 
     public static readonly string[] componentNames = {
+        "AddEffectCommand",
+        "BT",
         "CharacterCharacterMetaData",
         "CharacterCharacterStats",
         "CharacterFollowCharacter",
+        "CharacterMovement",
         "CharacterPosition",
         "CharacterPositionListener",
+        "CombatEffectStatus",
         "CombatNormalAttackData",
-        "Destroyed",
+        "DelayEntityDestroyed",
+        "EffectData",
+        "EntityDestroyed",
         "GameTimeTick",
         "IndicatorIndicator",
+        "SlowEffectActive",
+        "SlowEffectRequest",
+        "StunEffectActive",
         "ViewAsset",
         "ViewCharacterView"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(AddEffectCommandComponent),
+        typeof(BTComponent),
         typeof(Character.CharacterMetaDataComponent),
         typeof(Character.CharacterStatsComponent),
         typeof(Character.FollowCharacterComponent),
+        typeof(Character.MovementComponent),
         typeof(Character.PositionComponent),
         typeof(CharacterPositionListenerComponent),
+        typeof(Combat.EffectStatusComponent),
         typeof(Combat.NormalAttackDataComponent),
-        typeof(DestroyedComponent),
+        typeof(DelayEntityDestroyedComponent),
+        typeof(EffectDataComponent),
+        typeof(EntityDestroyedComponent),
         typeof(GameTime.TickComponent),
         typeof(Indicator.IndicatorComponent),
+        typeof(SlowEffectActiveComponent),
+        typeof(SlowEffectRequestComponent),
+        typeof(StunEffectActiveComponent),
         typeof(View.AssetComponent),
         typeof(View.CharacterViewComponent)
     };

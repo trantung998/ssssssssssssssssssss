@@ -16,12 +16,14 @@ namespace View.Indicators
         {
             base.InitializeView(contexts, entity);
             _damageIndicatorData = this._entity.indicatorIndicator.value as DamageIndicatorData;
+            valueText.transform.position = Vector3.zero;
             if (_damageIndicatorData != null)
             {
                 valueText.text = "" + _damageIndicatorData.value;
                 if (_damageIndicatorData.isCriticalHit)
                 {
-                    valueText.transform.localScale = new Vector3(1.2f, 1.2f, 1);
+                    valueText.transform.localScale = Vector3.one;
+                    valueText.transform.DOScale(new Vector3(1.5f, 1.5f, 1), 0.3f).SetEase(Ease.InBounce);
                 }
                 else
                 {
@@ -30,13 +32,13 @@ namespace View.Indicators
             }
 
             valueText.transform.DOMoveY(transform.position.y + 0.5f, 0.3f)
-                .OnComplete(() => { this._entity.AddDestroyed(0f); });
+                .OnComplete(() => { this._entity.isEntityDestroyed = true; });
         }
 
         public override void OnEntityDestroyed()
         {
-            gameObject.Recycle();
             base.OnEntityDestroyed();
+            gameObject.Recycle();
         }
     }
 }

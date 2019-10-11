@@ -52,14 +52,20 @@ namespace Combat
             //critical...
             //Life Steal...
             //etc
-            ProcessCritical(source.characterCharacterStats.value, ref target.characterCharacterStats.value);
+            ProcessCritical(source.characterCharacterStats.value, 
+                target.characterCharacterMetaData.id,
+                ref target.characterCharacterStats.value);
         }
 
-        private void ProcessCritical(CharacterStat source, ref CharacterStat target)
+        private void ProcessCritical(CharacterStat source, int targetId, ref CharacterStat target)
         {
             var damage = source.attackDamage;
             var criticalChance = source.criticalChance;
-            var damageIndicator = new DamageIndicatorData() {type = IndicatorType.Damage};
+            var damageIndicator = new DamageIndicatorData()
+            {
+                targetId = targetId,
+                type = IndicatorType.Damage
+            };
             if (criticalChance > 0)
             {
                 var random = _randomService.GetFloat();

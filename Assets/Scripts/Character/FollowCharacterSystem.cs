@@ -20,11 +20,11 @@ public class FollowCharacterSystem : IExecuteSystem
                 _gameContext.GetEntityWithCharacterCharacterMetaData(gameEntity.characterFollowCharacter.id);
             if (target != null && target.isEnabled && target.hasCharacterPosition)
             {
-                gameEntity.characterPosition.value = target.characterPosition.value;
+                gameEntity.ReplaceCharacterPosition(target.characterPosition.value);
             }
             else
             {
-                gameEntity.AddDestroyed(0f);
+                gameEntity.isEntityDestroyed = true;
             }
         }
     }

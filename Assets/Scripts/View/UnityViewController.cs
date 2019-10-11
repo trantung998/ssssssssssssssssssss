@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace View
 {
-    public class UnityViewController : MonoBehaviour, IViewController
+    public class UnityViewController : MonoBehaviour, IViewController, ICharacterPositionListener
     {
         protected Contexts _contexts;
         protected GameEntity _entity;
@@ -37,12 +37,13 @@ namespace View
         {
             this._contexts = contexts;
             this._entity = (GameEntity) entity;
-
+            this._entity.AddCharacterPositionListener(this);
             Link();
         }
 
         public virtual void OnEntityDestroyed()
         {
+            this._entity.RemoveCharacterPositionListener(this);
             UnLink();
         }
 
@@ -58,8 +59,13 @@ namespace View
 
         public void UnLink()
         {
-            if (gameObject.GetEntityLink() != null && gameObject.GetEntityLink().entity != null)
+            if (gameObject != null && gameObject.GetEntityLink() != null && gameObject.GetEntityLink().entity != null)
                 gameObject.Unlink();
+        }
+
+        public void OnCharacterPosition(GameEntity entity, Vector3 value)
+        {
+            Position = value;
         }
     }
 }

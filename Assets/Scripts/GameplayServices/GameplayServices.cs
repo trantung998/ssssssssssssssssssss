@@ -10,6 +10,7 @@ namespace GameplayServices
         public IInputService InputService;
         public IRandomService RandomService;
         public ITimeService TimeService;
+        public IBTService BtService;
     }
 
     public class ServiceRegistrationSystems : Feature
@@ -20,6 +21,7 @@ namespace GameplayServices
             Add(new InitInputSystem(contexts, services.InputService));
             Add(new InitRandomService(contexts, services.RandomService));
             Add(new InitTimeService(contexts, services.TimeService));
+            Add(new InitBTServiceSystem(contexts, services.BtService));
         }
 
         public sealed override Entitas.Systems Add(ISystem system)

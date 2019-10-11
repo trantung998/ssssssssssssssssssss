@@ -26,7 +26,9 @@ public class SpawnIndicatorSystem : ReactiveSystem<GameEntity>
         foreach (var entity in entities)
         {
             entity.AddViewAsset(GetViewId(entity.indicatorIndicator));
+
             entity.AddCharacterPosition(Vector3.zero);
+
             entity.AddCharacterFollowCharacter(entity.indicatorIndicator.value.targetId, Vector2.up);
         }
     }

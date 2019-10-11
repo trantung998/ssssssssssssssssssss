@@ -30,6 +30,8 @@ namespace Character
 
             character2.AddCharacterCharacterMetaData(2, new CharacterMetaData() {level = 1, displayName = "Dummy2"});
             character2.AddCharacterPosition(new Vector3(1, 0));
+            character2.AddCharacterMovement(0.5f, Vector2.right);
+            character2.AddBT(new DummyEnemyBehaviourTree());
         }
     }
 }
