@@ -9,7 +9,7 @@ namespace Combat
 
         public StunProcessSystem(Contexts contexts)
         {
-            stunedEntities = contexts.game.GetGroup(GameMatcher.StunEffectActive);
+            stunedEntities = contexts.game.GetGroup(GameMatcher.EffectData);
             _timeService = contexts.service.timeServiceCompoponent.instance;
         }
 
@@ -17,23 +17,36 @@ namespace Combat
         {
             foreach (var gameEntity in stunedEntities.GetEntities())
             {
-                if (gameEntity.stunEffectActive.value.RemainTime > 0)
+                gameEntity.effectData.value.TryGetValue(EffectId.Stun, out var stunEffectDataList);
+
+                if (stunEffectDataList != null)
                 {
-                    if (!gameEntity.hasCombatEffectStatus) gameEntity.AddCombatEffectStatus(0);
-                    var statusValue = gameEntity.combatEffectStatus.value;
-                    
-                    if (!gameEntity.stunEffectActive.value.IsEffectActive(statusValue))
+                    var bestDuration = 0f;
+
+                    for (var i = stunEffectDataList.Count - 1; i >= 0; i--)
                     {
-                        gameEntity.stunEffectActive.value.SetEffectState(ref statusValue);
+                        var baseEffectData = stunEffectDataList[i];
+                        if (baseEffectData.RemainTime > 0)
+                        {
+                            baseEffectData.RemainTime -= _timeService.DeltaTime;
+                            if (baseEffectData.RemainTime > bestDuration) bestDuration = baseEffectData.RemainTime;
+                        }
+                        else
+                        {
+                            stunEffectDataList.RemoveAt(i);
+                            continue;
+                        }
                     }
 
-                    gameEntity.stunEffectActive.value.RemainTime -= _timeService.DeltaTime;
-                }
-
-                else
-                {
-                    var statusValue = gameEntity.combatEffectStatus.value;
-                    gameEntity.stunEffectActive.value.SetEffectState(ref statusValue, false);
+                    var activeData = gameEntity.activeEffect.GetEffectData(EffectId.Stun);
+                    if (activeData != null)
+                    {
+                        activeData.RemainTime = bestDuration;
+                    }
+                    else
+                    {
+                        gameEntity.activeEffect.value.Add(EffectId.Stun, new StunEffectData(bestDuration));
+                    }
                 }
             }
         }

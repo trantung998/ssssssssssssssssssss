@@ -9,12 +9,12 @@ public class SlowEffectRequestComponent : IComponent
 {
     public SlowEffectData value;
 }
-
-[Game]
-public class SlowEffectActiveComponent : IComponent
-{
-    public SlowEffectData value;
-}
+//
+//[Game]
+//public class SlowEffectActiveComponent : IComponent
+//{
+//    public SlowEffectData value;
+//}
 
 
 

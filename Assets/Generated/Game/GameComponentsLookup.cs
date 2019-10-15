@@ -8,30 +8,34 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int AddEffectCommand = 0;
-    public const int BT = 1;
-    public const int CharacterCharacterMetaData = 2;
-    public const int CharacterCharacterStats = 3;
-    public const int CharacterFollowCharacter = 4;
-    public const int CharacterMovement = 5;
-    public const int CharacterPosition = 6;
-    public const int CharacterPositionListener = 7;
-    public const int CombatEffectStatus = 8;
-    public const int CombatNormalAttackData = 9;
-    public const int DelayEntityDestroyed = 10;
-    public const int EffectData = 11;
-    public const int EntityDestroyed = 12;
-    public const int GameTimeTick = 13;
-    public const int IndicatorIndicator = 14;
-    public const int SlowEffectActive = 15;
-    public const int SlowEffectRequest = 16;
-    public const int StunEffectActive = 17;
-    public const int ViewAsset = 18;
-    public const int ViewCharacterView = 19;
+    public const int ActiveEffect = 0;
+    public const int AddEffectCommand = 1;
+    public const int BT = 2;
+    public const int CharacterCharacterMetaData = 3;
+    public const int CharacterCharacterStats = 4;
+    public const int CharacterFollowCharacter = 5;
+    public const int CharacterMovement = 6;
+    public const int CharacterPosition = 7;
+    public const int CharacterPositionListener = 8;
+    public const int CombatEffectStatus = 9;
+    public const int CombatNormalAttackData = 10;
+    public const int DelayEntityDestroyed = 11;
+    public const int EffectDataChanged = 12;
+    public const int EffectDataChangedListener = 13;
+    public const int EffectData = 14;
+    public const int EntityDestroyed = 15;
+    public const int GameTimeTick = 16;
+    public const int IndicatorIndicator = 17;
+    public const int SlowEffectActive = 18;
+    public const int SlowEffectRequest = 19;
+    public const int StunEffectActive = 20;
+    public const int ViewAsset = 21;
+    public const int ViewCharacterView = 22;
 
-    public const int TotalComponents = 20;
+    public const int TotalComponents = 23;
 
     public static readonly string[] componentNames = {
+        "ActiveEffect",
         "AddEffectCommand",
         "BT",
         "CharacterCharacterMetaData",
@@ -43,6 +47,8 @@ public static class GameComponentsLookup {
         "CombatEffectStatus",
         "CombatNormalAttackData",
         "DelayEntityDestroyed",
+        "EffectDataChanged",
+        "EffectDataChangedListener",
         "EffectData",
         "EntityDestroyed",
         "GameTimeTick",
@@ -55,6 +61,7 @@ public static class GameComponentsLookup {
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(ActiveEffectComponent),
         typeof(AddEffectCommandComponent),
         typeof(BTComponent),
         typeof(Character.CharacterMetaDataComponent),
@@ -66,13 +73,15 @@ public static class GameComponentsLookup {
         typeof(Combat.EffectStatusComponent),
         typeof(Combat.NormalAttackDataComponent),
         typeof(DelayEntityDestroyedComponent),
+        typeof(EffectDataChangedComponent),
+        typeof(EffectDataChangedListenerComponent),
         typeof(EffectDataComponent),
         typeof(EntityDestroyedComponent),
         typeof(GameTime.TickComponent),
         typeof(Indicator.IndicatorComponent),
-        typeof(SlowEffectActiveComponent),
+//        typeof(SlowEffectActiveComponent),
         typeof(SlowEffectRequestComponent),
-        typeof(StunEffectActiveComponent),
+//        typeof(StunEffectActiveComponent),
         typeof(View.AssetComponent),
         typeof(View.CharacterViewComponent)
     };

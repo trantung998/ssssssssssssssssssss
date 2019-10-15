@@ -31,8 +31,10 @@ namespace Combat
                 {
                     if (!target.hasEffectData) target.AddEffectData(new Dictionary<EffectId, List<BaseEffectData>>());
                     var effectComponent = target.effectData;
-
                     effectComponent.AddEffect(command.addEffectCommand.value);
+
+                    target.isEffectDataChanged = false;
+                    target.isEffectDataChanged = true;
                 }
 
                 command.Destroy();

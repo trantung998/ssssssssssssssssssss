@@ -42,10 +42,16 @@ public class ProcessSlowEffectSystem : IExecuteSystem
                     }
                 }
 
-                if (!gameEntity.hasSlowEffectActive) gameEntity.AddSlowEffectActive(new SlowEffectData(bestDuration, bestValue));
-                
-                gameEntity.slowEffectActive.value.slowValue = bestValue;
-                gameEntity.slowEffectActive.value.RemainTime = bestDuration;
+                var activeData = gameEntity.activeEffect.GetEffectData(EffectId.Slow);
+                if (activeData != null)
+                {
+                    activeData.RemainTime = bestDuration;
+                    ((SlowEffectData) activeData).slowValue = bestValue;
+                }
+                else
+                {
+                    gameEntity.activeEffect.value.Add(EffectId.Slow, new SlowEffectData(bestDuration, bestValue));
+                }
             }
         }
     }

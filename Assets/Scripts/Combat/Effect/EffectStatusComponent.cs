@@ -1,4 +1,5 @@
 using Entitas;
+using Entitas.CodeGeneration.Attributes;
 
 namespace Combat
 {
@@ -7,4 +8,9 @@ namespace Combat
     {
         public int value;
     }
+}
+
+[Game, Event(EventTarget.Self)]
+public class EffectDataChangedComponent : IComponent
+{
 }
