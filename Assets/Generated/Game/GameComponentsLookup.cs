@@ -26,13 +26,10 @@ public static class GameComponentsLookup {
     public const int EntityDestroyed = 15;
     public const int GameTimeTick = 16;
     public const int IndicatorIndicator = 17;
-    public const int SlowEffectActive = 18;
-    public const int SlowEffectRequest = 19;
-    public const int StunEffectActive = 20;
-    public const int ViewAsset = 21;
-    public const int ViewCharacterView = 22;
+    public const int ViewAsset = 18;
+    public const int ViewCharacterView = 19;
 
-    public const int TotalComponents = 23;
+    public const int TotalComponents = 20;
 
     public static readonly string[] componentNames = {
         "ActiveEffect",
@@ -53,9 +50,6 @@ public static class GameComponentsLookup {
         "EntityDestroyed",
         "GameTimeTick",
         "IndicatorIndicator",
-        "SlowEffectActive",
-        "SlowEffectRequest",
-        "StunEffectActive",
         "ViewAsset",
         "ViewCharacterView"
     };
@@ -79,9 +73,6 @@ public static class GameComponentsLookup {
         typeof(EntityDestroyedComponent),
         typeof(GameTime.TickComponent),
         typeof(Indicator.IndicatorComponent),
-//        typeof(SlowEffectActiveComponent),
-        typeof(SlowEffectRequestComponent),
-//        typeof(StunEffectActiveComponent),
         typeof(View.AssetComponent),
         typeof(View.CharacterViewComponent)
     };

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Entitas;
 using Entitas.CodeGeneration.Attributes;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace Character
 
         public int level;
 
+        public int teamId;
         //etc....
     }
 
@@ -25,7 +27,37 @@ namespace Character
     [Game]
     public class CharacterStatsComponent : IComponent
     {
-        public CharacterStat value;
+        public List<BaseStat> Stats;
+
+        public BaseStat GetStat(CharacterStatId id)
+        {
+            if (Stats != null)
+            {
+                for (int i = 0; i < Stats.Count; i++)
+                {
+                    if (Stats[i].StatId == id)
+                    {
+                        return Stats[i];
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public void AddOrReplaceStat(BaseStat newStat)
+        {
+            if (Stats == null) Stats = new List<BaseStat>();
+            var exitsStatIndex = Stats.FindIndex(stat => stat.StatId == newStat.StatId);
+            if (exitsStatIndex < 0)
+            {
+                Stats.Add(newStat);
+            }
+            else
+            {
+                Stats[exitsStatIndex] = newStat;
+            }
+        }
     }
 
     [Game, Event(EventTarget.Self, EventType.Added)]

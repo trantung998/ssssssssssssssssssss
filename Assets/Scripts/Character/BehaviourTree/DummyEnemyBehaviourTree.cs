@@ -46,7 +46,7 @@ public class DummyEnemyBehaviourTree : IBTController
 
     private bool IsOutOfBound()
     {
-        Debug.Log("Check");
+//        Debug.Log("Check");
         var xPos = _entity.characterPosition.value.x;
 
         return xPos > 3f || xPos < -3f;

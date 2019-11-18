@@ -11,18 +11,21 @@ public static class InputComponentsLookup {
     public const int DelayEntityDestroyed = 0;
     public const int EntityDestroyed = 1;
     public const int InputData = 2;
+    public const int SpawnCharacter = 3;
 
-    public const int TotalComponents = 3;
+    public const int TotalComponents = 4;
 
     public static readonly string[] componentNames = {
         "DelayEntityDestroyed",
         "EntityDestroyed",
-        "InputData"
+        "InputData",
+        "SpawnCharacter"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(DelayEntityDestroyedComponent),
         typeof(EntityDestroyedComponent),
-        typeof(InputDataComponent)
+        typeof(InputDataComponent),
+        typeof(SpawnCharacterComponent)
     };
 }

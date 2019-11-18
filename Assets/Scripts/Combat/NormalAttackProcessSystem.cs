@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Character;
 using Entitas;
 using Indicator;
+using LeopotamGroup.Math;
 
 namespace Combat
 {
@@ -48,42 +49,82 @@ namespace Combat
 
         private void ProcessDamage(GameEntity source, GameEntity target)
         {
+            var sourceDamage = source.characterCharacterStats.GetStat(CharacterStatId.Damage);
+            if (sourceDamage == null) return;
+            var damageValue = sourceDamage.activeValue;
+
             //do some things fun
             //critical...
             //Life Steal...
             //etc
-            ProcessCritical(source.characterCharacterStats.value, 
-                target.characterCharacterMetaData.id,
-                ref target.characterCharacterStats.value);
-        }
+            var isCritical = ProcessCritical(source, target, ref damageValue);
 
-        private void ProcessCritical(CharacterStat source, int targetId, ref CharacterStat target)
-        {
-            var damage = source.attackDamage;
-            var criticalChance = source.criticalChance;
+            ProcessArmor(source, target, ref damageValue);
+
+            ProcessLifeSteal(source, target, ref damageValue);
+
             var damageIndicator = new DamageIndicatorData()
             {
-                targetId = targetId,
-                type = IndicatorType.Damage
+                targetId = target.characterCharacterMetaData.id,
+                type = IndicatorType.Damage,
+                isCriticalHit = isCritical,
+                value = damageValue,
             };
-            if (criticalChance > 0)
-            {
-                var random = _randomService.GetFloat();
-
-                if (criticalChance <= random)
-                {
-                    //critical trigger
-                    damage *= source.criticalDamageFactor;
-                    damageIndicator.isCriticalHit = true;
-                }
-            }
-
-            var actualDamage = (damage - target.armor);
-            damageIndicator.value = actualDamage;
-            target.health -= actualDamage;
 
             var damageIndicatorEntity = _gameContext.CreateEntity();
             damageIndicatorEntity.AddIndicatorIndicator(damageIndicator);
+        }
+
+        private void ProcessArmor(GameEntity sourceEntity, GameEntity targetEntity, ref float inputDamageValue)
+        {
+            var targetArmor = targetEntity.characterCharacterStats.GetStat(CharacterStatId.Armor);
+            if (targetArmor == null) return;
+            //theo dota2
+            var damageMultiplier = 1 - ((0.052f * targetArmor.activeValue) /
+                                        (0.9f + 0.048f * MathFast.Abs(targetArmor.activeValue)));
+
+            inputDamageValue = (inputDamageValue * damageMultiplier);
+
+
+            var targetHpValue = targetEntity.characterCharacterStats.GetStat(CharacterStatId.MaxHp);
+            if (targetHpValue == null)
+            {
+                //lỗi
+                return;
+            }
+
+            targetHpValue.activeValue -= inputDamageValue;
+            //done
+        }
+
+        private void ProcessLifeSteal(GameEntity sourceEntity, GameEntity targetEntity, ref float inputDamageValue)
+        {
+        }
+
+        private bool ProcessCritical(GameEntity sourceEntity, GameEntity targetEntity, ref float inputDamageValue)
+        {
+            var criticalChance = sourceEntity.characterCharacterStats.GetStat(CharacterStatId.CriticalChange);
+            if (criticalChance == null) return false;
+
+//            var damageOutput = sourceDamage.activeValue;
+            var isCritical = false;
+
+            if (criticalChance.activeValue > 0)
+            {
+                var random = _randomService.GetFloat();
+
+                if (criticalChance.activeValue <= random)
+                {
+                    //critical trigger
+                    var criticalDamage =
+                        sourceEntity.characterCharacterStats.GetStat(CharacterStatId.CriticalDamageScale);
+
+                    inputDamageValue *= criticalDamage.activeValue;
+                    isCritical = true;
+                }
+            }
+
+            return isCritical;
         }
     }
 }

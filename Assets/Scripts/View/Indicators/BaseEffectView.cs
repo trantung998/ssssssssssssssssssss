@@ -1,52 +1,45 @@
+using Combat;
 using TMPro;
 using UnityEngine;
 
-namespace View.Indicators
+public class BaseEffectView : MonoBehaviour
 {
-    public class BaseEffectView
+    [SerializeField] private TextMeshPro _effectNameText;
+    [SerializeField] private TextMeshPro _effectDurationText;
+
+    protected GameEntity _entity;
+    protected EffectId _effectId;
+
+    public virtual void InitData(GameEntity gameEntity, EffectId effectId)
     {
-        [SerializeField] private TextMeshPro _effectNameText;
-        [SerializeField] private TextMeshPro _effectDurationText;
+        _entity = gameEntity;
+        _effectId = effectId;
+    }
 
-        private GameEntity _entity;
+    protected virtual string GetEffectName()
+    {
+        return _effectId.ToString();
+    }
 
-        public virtual void InitData(GameEntity gameEntity)
-        {
-            _entity = gameEntity;
-        }
+    protected virtual float GetCurrentEffectTime()
+    {
+        var activeEffectData = _entity.activeEffect.GetEffectData(_effectId);
+        if (activeEffectData != null) return activeEffectData.RemainTime;
+        return 0f;
+    }
 
-        protected virtual string GetEffectName()
-        {
-            return "BaseEffectName";
-        }
+    public virtual void Show()
+    {
+        _effectNameText.text = GetEffectName();
+    }
 
-        protected virtual float GetCurrentEffectTime()
-        {
-            return 0f;
-        }
+    public virtual void Hide()
+    {
+        gameObject.Recycle();
+    }
 
-        public virtual void Show()
-        {
-            CreateEffectVisual();
-        }
-
-        public virtual void Hide()
-        {
-        }
-
-        public virtual void OnUpdate(float dt)
-        {
-        }
-
-        protected virtual void CreateEffectVisual()
-        {
-            var prefab = GetEffectVisualPrefab();
-            prefab.Spawn();
-        }
-
-        protected virtual GameObject GetEffectVisualPrefab()
-        {
-            return null;
-        }
+    public virtual void OnUpdate(float dt)
+    {
+        _effectDurationText.text = string.Format("Duration: {0}", GetCurrentEffectTime());
     }
 }
