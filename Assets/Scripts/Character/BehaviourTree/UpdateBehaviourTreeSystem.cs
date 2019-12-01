@@ -10,7 +10,7 @@ public class UpdateBehaviourTreeSystem : IExecuteSystem
     public UpdateBehaviourTreeSystem(Contexts contexts)
     {
         _entityGroup = contexts.game.GetGroup(GameMatcher.BT);
-        _timeService = contexts.service.timeServiceCompoponent.instance;
+        _timeService = contexts.service.timeService.instance;
         _btService = contexts.service.bTService.instance;
     }
 

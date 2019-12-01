@@ -11,5 +11,6 @@ public sealed class GameEventSystems : Feature {
     public GameEventSystems(Contexts contexts) {
         Add(new CharacterPositionEventSystem(contexts)); // priority: 0
         Add(new EffectDataChangedEventSystem(contexts)); // priority: 0
+        Add(new AnyUpdateBattleTimeEventSystem(contexts)); // priority: 0
     }
 }

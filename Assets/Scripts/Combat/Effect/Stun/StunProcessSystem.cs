@@ -10,7 +10,7 @@ namespace Combat
         public StunProcessSystem(Contexts contexts)
         {
             stunedEntities = contexts.game.GetGroup(GameMatcher.EffectData);
-            _timeService = contexts.service.timeServiceCompoponent.instance;
+            _timeService = contexts.service.timeService.instance;
         }
 
         public void Execute()

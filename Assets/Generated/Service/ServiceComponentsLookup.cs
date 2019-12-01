@@ -11,7 +11,7 @@ public static class ServiceComponentsLookup {
     public const int BTService = 0;
     public const int GameplayServicesInputInputService = 1;
     public const int RandomService = 2;
-    public const int TimeServiceCompoponent = 3;
+    public const int TimeService = 3;
     public const int ViewViewService = 4;
 
     public const int TotalComponents = 5;
@@ -20,7 +20,7 @@ public static class ServiceComponentsLookup {
         "BTService",
         "GameplayServicesInputInputService",
         "RandomService",
-        "TimeServiceCompoponent",
+        "TimeService",
         "ViewViewService"
     };
 
@@ -28,7 +28,7 @@ public static class ServiceComponentsLookup {
         typeof(BTServiceComponent),
         typeof(GameplayServices.Input.InputServiceComponent),
         typeof(RandomServiceComponent),
-        typeof(TimeServiceCompoponent),
+        typeof(TimeServiceComponent),
         typeof(View.ViewServiceComponent)
     };
 }

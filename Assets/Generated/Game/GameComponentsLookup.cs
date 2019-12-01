@@ -10,30 +10,38 @@ public static class GameComponentsLookup {
 
     public const int ActiveEffect = 0;
     public const int AddEffectCommand = 1;
-    public const int BT = 2;
-    public const int CharacterCharacterMetaData = 3;
-    public const int CharacterCharacterStats = 4;
-    public const int CharacterFollowCharacter = 5;
-    public const int CharacterMovement = 6;
-    public const int CharacterPosition = 7;
-    public const int CharacterPositionListener = 8;
-    public const int CombatEffectStatus = 9;
-    public const int CombatNormalAttackData = 10;
-    public const int DelayEntityDestroyed = 11;
-    public const int EffectDataChanged = 12;
-    public const int EffectDataChangedListener = 13;
-    public const int EffectData = 14;
-    public const int EntityDestroyed = 15;
-    public const int GameTimeTick = 16;
-    public const int IndicatorIndicator = 17;
-    public const int ViewAsset = 18;
-    public const int ViewCharacterView = 19;
+    public const int AnyUpdateBattleTimeListener = 2;
+    public const int BattleTime = 3;
+    public const int BT = 4;
+    public const int CharacterCharacterMetaData = 5;
+    public const int CharacterCharacterStats = 6;
+    public const int CharacterFollowCharacter = 7;
+    public const int CharacterMovement = 8;
+    public const int CharacterPosition = 9;
+    public const int CharacterPositionListener = 10;
+    public const int CombatEffectStatus = 11;
+    public const int CombatNormalAttackData = 12;
+    public const int ConsumeManaCommand = 13;
+    public const int DelayEntityDestroyed = 14;
+    public const int EffectDataChanged = 15;
+    public const int EffectDataChangedListener = 16;
+    public const int EffectData = 17;
+    public const int EntityDestroyed = 18;
+    public const int GameTimeTick = 19;
+    public const int IndicatorIndicator = 20;
+    public const int Mana = 21;
+    public const int SpawnCharacterCommand = 22;
+    public const int UpdateBattleTime = 23;
+    public const int ViewAsset = 24;
+    public const int ViewCharacterView = 25;
 
-    public const int TotalComponents = 20;
+    public const int TotalComponents = 26;
 
     public static readonly string[] componentNames = {
         "ActiveEffect",
         "AddEffectCommand",
+        "AnyUpdateBattleTimeListener",
+        "BattleTime",
         "BT",
         "CharacterCharacterMetaData",
         "CharacterCharacterStats",
@@ -43,6 +51,7 @@ public static class GameComponentsLookup {
         "CharacterPositionListener",
         "CombatEffectStatus",
         "CombatNormalAttackData",
+        "ConsumeManaCommand",
         "DelayEntityDestroyed",
         "EffectDataChanged",
         "EffectDataChangedListener",
@@ -50,6 +59,9 @@ public static class GameComponentsLookup {
         "EntityDestroyed",
         "GameTimeTick",
         "IndicatorIndicator",
+        "Mana",
+        "SpawnCharacterCommand",
+        "UpdateBattleTime",
         "ViewAsset",
         "ViewCharacterView"
     };
@@ -57,6 +69,8 @@ public static class GameComponentsLookup {
     public static readonly System.Type[] componentTypes = {
         typeof(ActiveEffectComponent),
         typeof(AddEffectCommandComponent),
+        typeof(AnyUpdateBattleTimeListenerComponent),
+        typeof(BattleTimeComponent),
         typeof(BTComponent),
         typeof(Character.CharacterMetaDataComponent),
         typeof(Character.CharacterStatsComponent),
@@ -66,6 +80,7 @@ public static class GameComponentsLookup {
         typeof(CharacterPositionListenerComponent),
         typeof(Combat.EffectStatusComponent),
         typeof(Combat.NormalAttackDataComponent),
+        typeof(ConsumeManaCommand),
         typeof(DelayEntityDestroyedComponent),
         typeof(EffectDataChangedComponent),
         typeof(EffectDataChangedListenerComponent),
@@ -73,6 +88,9 @@ public static class GameComponentsLookup {
         typeof(EntityDestroyedComponent),
         typeof(GameTime.TickComponent),
         typeof(Indicator.IndicatorComponent),
+        typeof(ManaComponent),
+        typeof(SpawnCharacterCommandComponent),
+        typeof(UpdateBattleTimeComponent),
         typeof(View.AssetComponent),
         typeof(View.CharacterViewComponent)
     };

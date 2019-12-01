@@ -18,7 +18,7 @@ namespace EntityDestroyer
             _gameContext = contexts.game;
             _inputContext = contexts.input;
 
-            _timeService = contexts.service.timeServiceCompoponent.instance;
+            _timeService = contexts.service.timeService.instance;
 
             _destroyedGameEntities =
                 _gameContext.GetGroup(GameMatcher.EntityDestroyed);

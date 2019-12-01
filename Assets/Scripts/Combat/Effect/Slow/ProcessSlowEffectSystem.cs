@@ -13,7 +13,7 @@ public class ProcessSlowEffectSystem : IExecuteSystem
     {
         _gameContext = contexts.game;
         _groupEntityHasEffect = _gameContext.GetGroup(GameMatcher.EffectData);
-        _timeService = contexts.service.timeServiceCompoponent.instance;
+        _timeService = contexts.service.timeService.instance;
     }
 
     public void Execute()

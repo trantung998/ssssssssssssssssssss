@@ -12,7 +12,7 @@ namespace Character
         {
             _movementEntityGroup =
                 contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.CharacterPosition, GameMatcher.CharacterMovement));
-            _timeService = contexts.service.timeServiceCompoponent.instance;
+            _timeService = contexts.service.timeService.instance;
         }
 
         public void Execute()

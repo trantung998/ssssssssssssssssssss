@@ -2,7 +2,7 @@ using Entitas;
 using Entitas.CodeGeneration.Attributes;
 
 [Service, Unique]
-public class TimeServiceCompoponent : IComponent
+public class TimeServiceComponent : IComponent
 {
     public ITimeService instance;
 }
@@ -20,6 +20,6 @@ public class InitTimeService : IInitializeSystem
 
     public void Initialize()
     {
-        _serviceContext.ReplaceTimeServiceCompoponent(_timeService);
+        _serviceContext.ReplaceTimeService(_timeService);
     }
 }
