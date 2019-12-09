@@ -8,14 +8,16 @@
 //------------------------------------------------------------------------------
 public static class InputComponentsLookup {
 
-    public const int DelayEntityDestroyed = 0;
-    public const int EntityDestroyed = 1;
-    public const int InputData = 2;
-    public const int SpawnCharacter = 3;
+    public const int ConsumeManaCommand = 0;
+    public const int DelayEntityDestroyed = 1;
+    public const int EntityDestroyed = 2;
+    public const int InputData = 3;
+    public const int SpawnCharacter = 4;
 
-    public const int TotalComponents = 4;
+    public const int TotalComponents = 5;
 
     public static readonly string[] componentNames = {
+        "ConsumeManaCommand",
         "DelayEntityDestroyed",
         "EntityDestroyed",
         "InputData",
@@ -23,6 +25,7 @@ public static class InputComponentsLookup {
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(ConsumeManaCommand),
         typeof(DelayEntityDestroyedComponent),
         typeof(EntityDestroyedComponent),
         typeof(InputDataComponent),

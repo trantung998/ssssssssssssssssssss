@@ -18,20 +18,20 @@ namespace Character
         {
             var character1 = _gameContext.CreateEntity();
             character1.AddViewAsset(AssetId.DummyCharacter);
-            character1.AddCharacterCharacterStats(new List<BaseStat>());
+
             character1.AddCharacterCharacterMetaData(1,
                 new CharacterMetaData() {level = 1, displayName = "Dummy1", teamId = 0});
             character1.AddCharacterPosition(new Vector3(-1, 0));
+
             AddCharacterStat(character1, CharacterType.Creep, 1);
 
 
             var character2 = _gameContext.CreateEntity();
             character2.AddViewAsset(AssetId.DummyCharacter);
-            character2.AddCharacterCharacterStats(new List<BaseStat>());
 
             character2.AddCharacterCharacterMetaData(2,
                 new CharacterMetaData() {level = 1, displayName = "Dummy2", teamId = 1});
-            
+
             character2.AddCharacterPosition(new Vector3(1, 0));
             character2.AddCharacterMovement(0.5f, Vector2.right);
             character2.AddBT(new DummyEnemyBehaviourTree());
@@ -41,12 +41,15 @@ namespace Character
         //todo: đọc từ config, tính toán theo level, items, ...
         private void AddCharacterStat(GameEntity characterEntity, CharacterType characterType, int level)
         {
-            if (characterEntity.hasCharacterCharacterStats)
-            {
-                characterEntity.characterCharacterStats.AddOrReplaceStat(new BaseStat(CharacterStatId.MaxHp, 550));
-                characterEntity.characterCharacterStats.AddOrReplaceStat(new BaseStat(CharacterStatId.Damage, 45));
-                characterEntity.characterCharacterStats.AddOrReplaceStat(new BaseStat(CharacterStatId.Armor, 20));
-            }
+            var characterStatEntity = _gameContext.CreateEntity();
+            characterStatEntity.AddCharacterCharacterStats(0, 0, new List<BaseStat>());
+
+            characterStatEntity.characterCharacterStats.characterId = characterEntity.characterCharacterMetaData.id;
+            characterStatEntity.characterCharacterStats.retainCount += 1;
+
+            characterStatEntity.characterCharacterStats.AddOrReplaceStat(new BaseStat(CharacterStatId.MaxHp, 550));
+            characterStatEntity.characterCharacterStats.AddOrReplaceStat(new BaseStat(CharacterStatId.Damage, 45));
+            characterStatEntity.characterCharacterStats.AddOrReplaceStat(new BaseStat(CharacterStatId.Armor, 20));
         }
     }
 }

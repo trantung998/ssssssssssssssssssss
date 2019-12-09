@@ -9,19 +9,30 @@
 public partial class GameContext {
 
     public GameEntity manaEntity { get { return GetGroup(GameMatcher.Mana).GetSingleEntity(); } }
+    public ManaComponent mana { get { return manaEntity.mana; } }
+    public bool hasMana { get { return manaEntity != null; } }
 
-    public bool isMana {
-        get { return manaEntity != null; }
-        set {
-            var entity = manaEntity;
-            if (value != (entity != null)) {
-                if (value) {
-                    CreateEntity().isMana = true;
-                } else {
-                    entity.Destroy();
-                }
-            }
+    public GameEntity SetMana(System.Collections.Generic.List<ManaData> newManaDatas) {
+        if (hasMana) {
+            throw new Entitas.EntitasException("Could not set Mana!\n" + this + " already has an entity with ManaComponent!",
+                "You should check if the context already has a manaEntity before setting it or use context.ReplaceMana().");
         }
+        var entity = CreateEntity();
+        entity.AddMana(newManaDatas);
+        return entity;
+    }
+
+    public void ReplaceMana(System.Collections.Generic.List<ManaData> newManaDatas) {
+        var entity = manaEntity;
+        if (entity == null) {
+            entity = SetMana(newManaDatas);
+        } else {
+            entity.ReplaceMana(newManaDatas);
+        }
+    }
+
+    public void RemoveMana() {
+        manaEntity.Destroy();
     }
 }
 
@@ -35,25 +46,25 @@ public partial class GameContext {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly ManaComponent manaComponent = new ManaComponent();
+    public ManaComponent mana { get { return (ManaComponent)GetComponent(GameComponentsLookup.Mana); } }
+    public bool hasMana { get { return HasComponent(GameComponentsLookup.Mana); } }
 
-    public bool isMana {
-        get { return HasComponent(GameComponentsLookup.Mana); }
-        set {
-            if (value != isMana) {
-                var index = GameComponentsLookup.Mana;
-                if (value) {
-                    var componentPool = GetComponentPool(index);
-                    var component = componentPool.Count > 0
-                            ? componentPool.Pop()
-                            : manaComponent;
+    public void AddMana(System.Collections.Generic.List<ManaData> newManaDatas) {
+        var index = GameComponentsLookup.Mana;
+        var component = (ManaComponent)CreateComponent(index, typeof(ManaComponent));
+        component.manaDatas = newManaDatas;
+        AddComponent(index, component);
+    }
 
-                    AddComponent(index, component);
-                } else {
-                    RemoveComponent(index);
-                }
-            }
-        }
+    public void ReplaceMana(System.Collections.Generic.List<ManaData> newManaDatas) {
+        var index = GameComponentsLookup.Mana;
+        var component = (ManaComponent)CreateComponent(index, typeof(ManaComponent));
+        component.manaDatas = newManaDatas;
+        ReplaceComponent(index, component);
+    }
+
+    public void RemoveMana() {
+        RemoveComponent(GameComponentsLookup.Mana);
     }
 }
 

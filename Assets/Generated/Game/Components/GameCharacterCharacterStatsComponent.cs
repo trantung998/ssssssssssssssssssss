@@ -11,16 +11,20 @@ public partial class GameEntity {
     public Character.CharacterStatsComponent characterCharacterStats { get { return (Character.CharacterStatsComponent)GetComponent(GameComponentsLookup.CharacterCharacterStats); } }
     public bool hasCharacterCharacterStats { get { return HasComponent(GameComponentsLookup.CharacterCharacterStats); } }
 
-    public void AddCharacterCharacterStats(System.Collections.Generic.List<Character.BaseStat> newStats) {
+    public void AddCharacterCharacterStats(int newCharacterId, int newRetainCount, System.Collections.Generic.List<Character.BaseStat> newStats) {
         var index = GameComponentsLookup.CharacterCharacterStats;
         var component = (Character.CharacterStatsComponent)CreateComponent(index, typeof(Character.CharacterStatsComponent));
+        component.characterId = newCharacterId;
+        component.retainCount = newRetainCount;
         component.Stats = newStats;
         AddComponent(index, component);
     }
 
-    public void ReplaceCharacterCharacterStats(System.Collections.Generic.List<Character.BaseStat> newStats) {
+    public void ReplaceCharacterCharacterStats(int newCharacterId, int newRetainCount, System.Collections.Generic.List<Character.BaseStat> newStats) {
         var index = GameComponentsLookup.CharacterCharacterStats;
         var component = (Character.CharacterStatsComponent)CreateComponent(index, typeof(Character.CharacterStatsComponent));
+        component.characterId = newCharacterId;
+        component.retainCount = newRetainCount;
         component.Stats = newStats;
         ReplaceComponent(index, component);
     }

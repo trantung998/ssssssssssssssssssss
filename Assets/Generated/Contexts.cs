@@ -61,6 +61,7 @@ public partial class Contexts : Entitas.IContexts {
 public partial class Contexts {
 
     public const string CharacterCharacterMetaData = "CharacterCharacterMetaData";
+    public const string CharacterCharacterStats = "CharacterCharacterStats";
 
     [Entitas.CodeGeneration.Attributes.PostConstructor]
     public void InitializeEntityIndices() {
@@ -68,6 +69,11 @@ public partial class Contexts {
             CharacterCharacterMetaData,
             game.GetGroup(GameMatcher.CharacterCharacterMetaData),
             (e, c) => ((Character.CharacterMetaDataComponent)c).id));
+
+        game.AddEntityIndex(new Entitas.EntityIndex<GameEntity, int>(
+            CharacterCharacterStats,
+            game.GetGroup(GameMatcher.CharacterCharacterStats),
+            (e, c) => ((Character.CharacterStatsComponent)c).characterId));
     }
 }
 
@@ -75,6 +81,10 @@ public static class ContextsExtensions {
 
     public static GameEntity GetEntityWithCharacterCharacterMetaData(this GameContext context, int id) {
         return ((Entitas.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.CharacterCharacterMetaData)).GetEntity(id);
+    }
+
+    public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithCharacterCharacterStats(this GameContext context, int characterId) {
+        return ((Entitas.EntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.CharacterCharacterStats)).GetEntities(characterId);
     }
 }
 //------------------------------------------------------------------------------

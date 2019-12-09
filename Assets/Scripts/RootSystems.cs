@@ -23,6 +23,7 @@ public class GameSystems : Feature
     public GameSystems(Contexts contexts)
     {
         Add(new BattleTimeSystem(contexts));
+        Add(new BattleManaSystem(contexts));
 
         Add(new CreateDummyCharacterSystem(contexts));
 

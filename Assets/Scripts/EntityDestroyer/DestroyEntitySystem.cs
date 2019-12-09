@@ -27,7 +27,7 @@ namespace EntityDestroyer
                 _gameContext.GetGroup(
                     GameMatcher.DelayEntityDestroyed);
 
-            _destroyedInputEntities = _inputContext.GetGroup(InputMatcher.DelayEntityDestroyed);
+            _destroyedInputEntities = _inputContext.GetGroup(InputMatcher.EntityDestroyed);
         }
 
         public void Cleanup()
@@ -51,8 +51,10 @@ namespace EntityDestroyer
 
             foreach (var e in _destroyedInputEntities.GetEntities())
             {
-                if (e.delayEntityDestroyed.IsTimeOut(_timeService.DeltaTime))
+                if (e.isEntityDestroyed)
+                {
                     e.Destroy();
+                }
             }
         }
 

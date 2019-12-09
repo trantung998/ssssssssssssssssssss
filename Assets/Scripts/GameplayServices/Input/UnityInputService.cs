@@ -29,6 +29,12 @@ namespace GameplayServices.Input
                     targetId = 2,
                 });
             }
+            else if (UnityEngine.Input.GetKeyDown(KeyCode.S))
+            {
+                Debug.Log("Key SSSSSSSS");
+                var consumeMamanaEntity = _inputContext.CreateEntity();
+                consumeMamanaEntity.AddConsumeManaCommand(0, -5);
+            }
         }
     }
 }

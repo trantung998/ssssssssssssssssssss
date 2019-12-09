@@ -21,21 +21,20 @@ public static class GameComponentsLookup {
     public const int CharacterPositionListener = 10;
     public const int CombatEffectStatus = 11;
     public const int CombatNormalAttackData = 12;
-    public const int ConsumeManaCommand = 13;
-    public const int DelayEntityDestroyed = 14;
-    public const int EffectDataChanged = 15;
-    public const int EffectDataChangedListener = 16;
-    public const int EffectData = 17;
-    public const int EntityDestroyed = 18;
-    public const int GameTimeTick = 19;
-    public const int IndicatorIndicator = 20;
-    public const int Mana = 21;
-    public const int SpawnCharacterCommand = 22;
-    public const int UpdateBattleTime = 23;
-    public const int ViewAsset = 24;
-    public const int ViewCharacterView = 25;
+    public const int DelayEntityDestroyed = 13;
+    public const int EffectDataChanged = 14;
+    public const int EffectDataChangedListener = 15;
+    public const int EffectData = 16;
+    public const int EntityDestroyed = 17;
+    public const int GameTimeTick = 18;
+    public const int IndicatorIndicator = 19;
+    public const int Mana = 20;
+    public const int SpawnCharacterCommand = 21;
+    public const int UpdateBattleTime = 22;
+    public const int ViewAsset = 23;
+    public const int ViewCharacterView = 24;
 
-    public const int TotalComponents = 26;
+    public const int TotalComponents = 25;
 
     public static readonly string[] componentNames = {
         "ActiveEffect",
@@ -51,7 +50,6 @@ public static class GameComponentsLookup {
         "CharacterPositionListener",
         "CombatEffectStatus",
         "CombatNormalAttackData",
-        "ConsumeManaCommand",
         "DelayEntityDestroyed",
         "EffectDataChanged",
         "EffectDataChangedListener",
@@ -80,7 +78,6 @@ public static class GameComponentsLookup {
         typeof(CharacterPositionListenerComponent),
         typeof(Combat.EffectStatusComponent),
         typeof(Combat.NormalAttackDataComponent),
-        typeof(ConsumeManaCommand),
         typeof(DelayEntityDestroyedComponent),
         typeof(EffectDataChangedComponent),
         typeof(EffectDataChangedListenerComponent),

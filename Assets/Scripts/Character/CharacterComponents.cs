@@ -16,6 +16,10 @@ namespace Character
         //etc....
     }
 
+    public class StatData
+    {
+    }
+
     [Game]
     public class CharacterMetaDataComponent : IComponent
     {
@@ -27,7 +31,10 @@ namespace Character
     [Game]
     public class CharacterStatsComponent : IComponent
     {
+        [EntityIndex] public int characterId;
+        public int retainCount;
         public List<BaseStat> Stats;
+
 
         public BaseStat GetStat(CharacterStatId id)
         {

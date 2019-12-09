@@ -92,7 +92,6 @@
     <Compile Include="Assets\Generated\Game\Components\GameCharacterPositionListenerComponent.cs" />
     <Compile Include="Assets\Generated\Game\Components\GameCombatEffectStatusComponent.cs" />
     <Compile Include="Assets\Generated\Game\Components\GameCombatNormalAttackDataComponent.cs" />
-    <Compile Include="Assets\Generated\Game\Components\GameConsumeManaCommandComponent.cs" />
     <Compile Include="Assets\Generated\Game\Components\GameDelayEntityDestroyedComponent.cs" />
     <Compile Include="Assets\Generated\Game\Components\GameEffectDataChangedComponent.cs" />
     <Compile Include="Assets\Generated\Game\Components\GameEffectDataChangedListenerComponent.cs" />
@@ -110,6 +109,7 @@
     <Compile Include="Assets\Generated\Game\GameContext.cs" />
     <Compile Include="Assets\Generated\Game\GameEntity.cs" />
     <Compile Include="Assets\Generated\Game\GameMatcher.cs" />
+    <Compile Include="Assets\Generated\Input\Components\InputConsumeManaCommandComponent.cs" />
     <Compile Include="Assets\Generated\Input\Components\InputDelayEntityDestroyedComponent.cs" />
     <Compile Include="Assets\Generated\Input\Components\InputEntityDestroyedComponent.cs" />
     <Compile Include="Assets\Generated\Input\Components\InputInputDataComponent.cs" />
@@ -136,6 +136,7 @@
     <Compile Include="Assets\QuickSheet\Runtime\Util\ConvertExt.cs" />
     <Compile Include="Assets\Scripts\Battle\Mana\BattleManaSystem.cs" />
     <Compile Include="Assets\Scripts\Battle\Mana\ManaComponent.cs" />
+    <Compile Include="Assets\Scripts\Battle\Mana\UI\ManaBarController.cs" />
     <Compile Include="Assets\Scripts\Battle\Time\BattleTimeComponent.cs" />
     <Compile Include="Assets\Scripts\Battle\Time\BattleTimeSystem.cs" />
     <Compile Include="Assets\Scripts\Battle\Time\UI\BattleTimeUI.cs" />

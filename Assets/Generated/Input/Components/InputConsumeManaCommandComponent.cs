@@ -6,13 +6,13 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial class GameEntity {
+public partial class InputEntity {
 
-    public ConsumeManaCommand consumeManaCommand { get { return (ConsumeManaCommand)GetComponent(GameComponentsLookup.ConsumeManaCommand); } }
-    public bool hasConsumeManaCommand { get { return HasComponent(GameComponentsLookup.ConsumeManaCommand); } }
+    public ConsumeManaCommand consumeManaCommand { get { return (ConsumeManaCommand)GetComponent(InputComponentsLookup.ConsumeManaCommand); } }
+    public bool hasConsumeManaCommand { get { return HasComponent(InputComponentsLookup.ConsumeManaCommand); } }
 
     public void AddConsumeManaCommand(int newTeamId, int newValue) {
-        var index = GameComponentsLookup.ConsumeManaCommand;
+        var index = InputComponentsLookup.ConsumeManaCommand;
         var component = (ConsumeManaCommand)CreateComponent(index, typeof(ConsumeManaCommand));
         component.teamId = newTeamId;
         component.value = newValue;
@@ -20,7 +20,7 @@ public partial class GameEntity {
     }
 
     public void ReplaceConsumeManaCommand(int newTeamId, int newValue) {
-        var index = GameComponentsLookup.ConsumeManaCommand;
+        var index = InputComponentsLookup.ConsumeManaCommand;
         var component = (ConsumeManaCommand)CreateComponent(index, typeof(ConsumeManaCommand));
         component.teamId = newTeamId;
         component.value = newValue;
@@ -28,7 +28,7 @@ public partial class GameEntity {
     }
 
     public void RemoveConsumeManaCommand() {
-        RemoveComponent(GameComponentsLookup.ConsumeManaCommand);
+        RemoveComponent(InputComponentsLookup.ConsumeManaCommand);
     }
 }
 
@@ -40,15 +40,15 @@ public partial class GameEntity {
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed partial class GameMatcher {
+public sealed partial class InputMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherConsumeManaCommand;
+    static Entitas.IMatcher<InputEntity> _matcherConsumeManaCommand;
 
-    public static Entitas.IMatcher<GameEntity> ConsumeManaCommand {
+    public static Entitas.IMatcher<InputEntity> ConsumeManaCommand {
         get {
             if (_matcherConsumeManaCommand == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.ConsumeManaCommand);
-                matcher.componentNames = GameComponentsLookup.componentNames;
+                var matcher = (Entitas.Matcher<InputEntity>)Entitas.Matcher<InputEntity>.AllOf(InputComponentsLookup.ConsumeManaCommand);
+                matcher.componentNames = InputComponentsLookup.componentNames;
                 _matcherConsumeManaCommand = matcher;
             }
 
