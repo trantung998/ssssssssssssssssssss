@@ -1,3 +1,5 @@
+using System.Linq;
+using Character;
 using Combat;
 using Combat.Slow;
 using Entitas;
@@ -42,16 +44,27 @@ public class ProcessSlowEffectSystem : IExecuteSystem
                     }
                 }
 
-                var activeData = gameEntity.activeEffect.GetEffectData(EffectId.Slow);
-                if (activeData != null)
+                var slowEffectActiveData = (SlowEffectData) gameEntity.activeEffect.GetEffectData(EffectId.Slow);
+                if (slowEffectActiveData != null)
                 {
-                    activeData.RemainTime = bestDuration;
-                    ((SlowEffectData) activeData).slowValue = bestValue;
+                    slowEffectActiveData.RemainTime = bestDuration;
+                    slowEffectActiveData.slowValue = bestValue;
                 }
                 else
                 {
                     gameEntity.activeEffect.value.Add(EffectId.Slow, new SlowEffectData(bestDuration, bestValue));
+                    slowEffectActiveData = (SlowEffectData) gameEntity.activeEffect.GetEffectData(EffectId.Slow);
                 }
+
+                //
+                var characterStat =
+                    _gameContext.GetEntitiesWithCharacterCharacterStats(gameEntity.characterCharacterMetaData.id);
+                if (characterStat == null || characterStat.Count == 0) return;
+                var statEntity = characterStat.FirstOrDefault();
+                if (statEntity == null) return;
+
+                var moveSpeedStat = statEntity.characterCharacterStats.GetStat(CharacterStatId.MoveSpeed);
+                moveSpeedStat.SetBuffValue(slowEffectActiveData.slowValue);
             }
         }
     }

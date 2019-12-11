@@ -31,6 +31,16 @@ public class SpawnCharacterData
     public CharacterType Type;
     public Vector2 Position;
     public int teamId;
+    public int level;
+    public int id;
+
+    public SpawnCharacterData(CharacterType type, Vector2 position, int teamId, int level)
+    {
+        Type = type;
+        Position = position;
+        this.teamId = teamId;
+        this.level = level;
+    }
 }
 
 [Input]

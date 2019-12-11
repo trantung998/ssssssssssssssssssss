@@ -13,4 +13,9 @@ namespace Combat
     {
         public NormalAttackData value;
     }
+
+    [Game]
+    public class NeedStatComponent : IComponent
+    {
+    }
 }

@@ -41,8 +41,8 @@ namespace Input
                         target = normalAttackInput.targetId,
                     });
 
-                    var stunRequest = _gameContext.CreateEntity();
-                    stunRequest.AddAddEffectCommand(normalAttackInput.targetId,
+                    var effectCommandEntity = _gameContext.CreateEntity();
+                    effectCommandEntity.AddAddEffectCommand(normalAttackInput.targetId,
                         new SlowEffectData(_randomService.GetFloat(1f, 3f), _randomService.GetFloat()));
                 }
 

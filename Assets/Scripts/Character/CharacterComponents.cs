@@ -34,8 +34,7 @@ namespace Character
         [EntityIndex] public int characterId;
         public int retainCount;
         public List<BaseStat> Stats;
-
-
+        
         public BaseStat GetStat(CharacterStatId id)
         {
             if (Stats != null)

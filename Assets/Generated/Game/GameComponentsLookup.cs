@@ -86,7 +86,7 @@ public static class GameComponentsLookup {
         typeof(GameTime.TickComponent),
         typeof(Indicator.IndicatorComponent),
         typeof(ManaComponent),
-        typeof(SpawnCharacterCommandComponent),
+//        typeof(SpawnCharacterCommandComponent),
         typeof(UpdateBattleTimeComponent),
         typeof(View.AssetComponent),
         typeof(View.CharacterViewComponent)

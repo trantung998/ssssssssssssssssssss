@@ -34,13 +34,6 @@ namespace Combat
                     effectComponent.AddEffect(command.addEffectCommand.value);
 
                     if (!target.hasActiveEffect) target.AddActiveEffect(new Dictionary<EffectId, BaseEffectData>());
-//                    var activeEffect = target.activeEffect.GetEffectData(command.addEffectCommand.value.EffectId);
-//
-//                    if (activeEffect == null)
-//                    {
-//                        target.activeEffect.value.Add(command.addEffectCommand.value.EffectId,
-//                            command.addEffectCommand.value);
-//                    }
                 }
 
                 command.Destroy();

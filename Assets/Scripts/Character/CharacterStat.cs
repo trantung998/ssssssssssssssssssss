@@ -15,14 +15,27 @@ namespace Character
     public class BaseStat
     {
         public CharacterStatId StatId;
-        public float originValue;
-        public float activeValue;
+        private float originValue;
+        private float activeValue;
+        private float buffValue;
 
         public BaseStat(CharacterStatId statId, float originValue)
         {
             StatId = statId;
             this.originValue = originValue;
             this.activeValue = originValue;
+            this.buffValue = 1f;
+        }
+
+        public void SetBuffValue(float newBuffValue)
+        {
+            this.buffValue = newBuffValue;
+        }
+
+        public float ActiveValue
+        {
+            get => activeValue * buffValue;
+            set => activeValue = value;
         }
     }
 

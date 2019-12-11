@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Character;
 using Entitas;
 using Indicator;
@@ -49,30 +50,43 @@ namespace Combat
 
         private void ProcessDamage(GameEntity source, GameEntity target)
         {
-            var sourceDamage = source.characterCharacterStats.GetStat(CharacterStatId.Damage);
-            if (sourceDamage == null) return;
-            var damageValue = sourceDamage.activeValue;
+            var sourceStatDatas =
+                _gameContext.GetEntitiesWithCharacterCharacterStats(source.characterCharacterMetaData.id);
+            if (sourceStatDatas == null) return;
 
-            //do some things fun
-            //critical...
-            //Life Steal...
-            //etc
-            var isCritical = ProcessCritical(source, target, ref damageValue);
+            var sourceStatEntity = sourceStatDatas.FirstOrDefault();
 
-            ProcessArmor(source, target, ref damageValue);
-
-            ProcessLifeSteal(source, target, ref damageValue);
-
-            var damageIndicator = new DamageIndicatorData()
+            if (sourceStatEntity != null)
             {
-                targetId = target.characterCharacterMetaData.id,
-                type = IndicatorType.Damage,
-                isCriticalHit = isCritical,
-                value = damageValue,
-            };
+                if (sourceStatEntity.characterCharacterStats.retainCount > 0)
+                {
+                    var sourceDamage = sourceStatEntity.characterCharacterStats.GetStat(CharacterStatId.Damage);
 
-            var damageIndicatorEntity = _gameContext.CreateEntity();
-            damageIndicatorEntity.AddIndicatorIndicator(damageIndicator);
+                    if (sourceDamage == null) return;
+                    var damageValue = sourceDamage.ActiveValue;
+
+                    //do some things fun
+                    //critical...
+                    //Life Steal...
+                    //etc
+                    var isCritical = ProcessCritical(sourceStatEntity, target, ref damageValue);
+
+                    ProcessArmor(sourceStatEntity, target, ref damageValue);
+
+                    ProcessLifeSteal(sourceStatEntity, target, ref damageValue);
+
+                    var damageIndicator = new DamageIndicatorData()
+                    {
+                        targetId = target.characterCharacterMetaData.id,
+                        type = IndicatorType.Damage,
+                        isCriticalHit = isCritical,
+                        value = damageValue,
+                    };
+
+                    var damageIndicatorEntity = _gameContext.CreateEntity();
+                    damageIndicatorEntity.AddIndicatorIndicator(damageIndicator);
+                }
+            }
         }
 
         private void ProcessArmor(GameEntity sourceEntity, GameEntity targetEntity, ref float inputDamageValue)
@@ -80,8 +94,8 @@ namespace Combat
             var targetArmor = targetEntity.characterCharacterStats.GetStat(CharacterStatId.Armor);
             if (targetArmor == null) return;
             //theo dota2
-            var damageMultiplier = 1 - ((0.052f * targetArmor.activeValue) /
-                                        (0.9f + 0.048f * MathFast.Abs(targetArmor.activeValue)));
+            var damageMultiplier = 1 - ((0.052f * targetArmor.ActiveValue) /
+                                        (0.9f + 0.048f * MathFast.Abs(targetArmor.ActiveValue)));
 
             inputDamageValue = (inputDamageValue * damageMultiplier);
 
@@ -93,7 +107,7 @@ namespace Combat
                 return;
             }
 
-            targetHpValue.activeValue -= inputDamageValue;
+            targetHpValue.ActiveValue -= inputDamageValue;
             //done
         }
 
@@ -101,25 +115,25 @@ namespace Combat
         {
         }
 
-        private bool ProcessCritical(GameEntity sourceEntity, GameEntity targetEntity, ref float inputDamageValue)
+        private bool ProcessCritical(GameEntity sourceStatEntity, GameEntity targetEntity, ref float inputDamageValue)
         {
-            var criticalChance = sourceEntity.characterCharacterStats.GetStat(CharacterStatId.CriticalChange);
+            var criticalChance = sourceStatEntity.characterCharacterStats.GetStat(CharacterStatId.CriticalChange);
             if (criticalChance == null) return false;
 
 //            var damageOutput = sourceDamage.activeValue;
             var isCritical = false;
 
-            if (criticalChance.activeValue > 0)
+            if (criticalChance.ActiveValue > 0)
             {
                 var random = _randomService.GetFloat();
 
-                if (criticalChance.activeValue <= random)
+                if (criticalChance.ActiveValue <= random)
                 {
                     //critical trigger
                     var criticalDamage =
-                        sourceEntity.characterCharacterStats.GetStat(CharacterStatId.CriticalDamageScale);
+                        sourceStatEntity.characterCharacterStats.GetStat(CharacterStatId.CriticalDamageScale);
 
-                    inputDamageValue *= criticalDamage.activeValue;
+                    inputDamageValue *= criticalDamage.ActiveValue;
                     isCritical = true;
                 }
             }
