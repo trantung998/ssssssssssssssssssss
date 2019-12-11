@@ -20,16 +20,16 @@ public static class GameComponentsLookup {
     public const int CharacterPosition = 9;
     public const int CharacterPositionListener = 10;
     public const int CombatEffectStatus = 11;
-    public const int CombatNormalAttackData = 12;
-    public const int DelayEntityDestroyed = 13;
-    public const int EffectDataChanged = 14;
-    public const int EffectDataChangedListener = 15;
-    public const int EffectData = 16;
-    public const int EntityDestroyed = 17;
-    public const int GameTimeTick = 18;
-    public const int IndicatorIndicator = 19;
-    public const int Mana = 20;
-    public const int SpawnCharacterCommand = 21;
+    public const int DelayEntityDestroyed = 12;
+    public const int EffectDataChanged = 13;
+    public const int EffectDataChangedListener = 14;
+    public const int EffectData = 15;
+    public const int EntityDestroyed = 16;
+    public const int GameTimeTick = 17;
+    public const int IndicatorIndicator = 18;
+    public const int Mana = 19;
+    public const int NeedStatRetain = 20;
+    public const int NormalAttackData = 21;
     public const int UpdateBattleTime = 22;
     public const int ViewAsset = 23;
     public const int ViewCharacterView = 24;
@@ -49,7 +49,6 @@ public static class GameComponentsLookup {
         "CharacterPosition",
         "CharacterPositionListener",
         "CombatEffectStatus",
-        "CombatNormalAttackData",
         "DelayEntityDestroyed",
         "EffectDataChanged",
         "EffectDataChangedListener",
@@ -58,7 +57,8 @@ public static class GameComponentsLookup {
         "GameTimeTick",
         "IndicatorIndicator",
         "Mana",
-        "SpawnCharacterCommand",
+        "NeedStatRetain",
+        "NormalAttackData",
         "UpdateBattleTime",
         "ViewAsset",
         "ViewCharacterView"
@@ -77,7 +77,6 @@ public static class GameComponentsLookup {
         typeof(Character.PositionComponent),
         typeof(CharacterPositionListenerComponent),
         typeof(Combat.EffectStatusComponent),
-        typeof(Combat.NormalAttackDataComponent),
         typeof(DelayEntityDestroyedComponent),
         typeof(EffectDataChangedComponent),
         typeof(EffectDataChangedListenerComponent),
@@ -86,7 +85,8 @@ public static class GameComponentsLookup {
         typeof(GameTime.TickComponent),
         typeof(Indicator.IndicatorComponent),
         typeof(ManaComponent),
-//        typeof(SpawnCharacterCommandComponent),
+        typeof(NeedStatRetainComponent),
+        typeof(NormalAttackDataComponent),
         typeof(UpdateBattleTimeComponent),
         typeof(View.AssetComponent),
         typeof(View.CharacterViewComponent)

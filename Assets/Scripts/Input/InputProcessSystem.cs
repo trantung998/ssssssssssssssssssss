@@ -35,11 +35,12 @@ namespace Input
                     var normalAttackInput = (TestNormalAttackInput) inputEntity.inputData.value;
 
                     var attackRequest = _gameContext.CreateEntity();
-                    attackRequest.AddCombatNormalAttackData(new NormalAttackData()
+                    attackRequest.AddNormalAttackData(new NormalAttackData()
                     {
                         source = normalAttackInput.sourceId,
                         target = normalAttackInput.targetId,
                     });
+                    attackRequest.isNeedStatRetain = true;
 
                     var effectCommandEntity = _gameContext.CreateEntity();
                     effectCommandEntity.AddAddEffectCommand(normalAttackInput.targetId,

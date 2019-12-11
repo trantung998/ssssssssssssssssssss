@@ -20,19 +20,19 @@ namespace Combat
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.CombatNormalAttackData);
+            return context.CreateCollector(GameMatcher.NormalAttackData);
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return entity.hasCombatNormalAttackData;
+            return entity.hasNormalAttackData;
         }
 
         protected override void Execute(List<GameEntity> entities)
         {
             foreach (var normalAttackEntity in entities)
             {
-                var combatNormalAttackData = normalAttackEntity.combatNormalAttackData.value;
+                var combatNormalAttackData = normalAttackEntity.normalAttackData.value;
                 var sourceEntity = _gameContext.GetEntityWithCharacterCharacterMetaData(combatNormalAttackData.source);
                 if (sourceEntity != null && sourceEntity.isEnabled)
                 {

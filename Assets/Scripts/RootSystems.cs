@@ -37,7 +37,7 @@ public class GameSystems : Feature
         Add(new ProcessSlowEffectSystem(contexts));
         Add(new StunProcessSystem(contexts));
 
-        Add(new UpdateCharacterSystem(contexts));
+        Add(new UpdateCharacterViewSystem(contexts));
         Add(new ProcessMovementSystem(contexts));
 
         Add(new FollowCharacterSystem(contexts));

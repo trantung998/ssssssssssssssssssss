@@ -2,12 +2,12 @@ using Entitas;
 
 namespace Character
 {
-    public class UpdateCharacterSystem : IExecuteSystem
+    public class UpdateCharacterViewSystem : IExecuteSystem
     {
         private readonly IGroup<GameEntity> _characterGroup;
         private readonly GameContext _gameContext;
 
-        public UpdateCharacterSystem(Contexts contexts)
+        public UpdateCharacterViewSystem(Contexts contexts)
         {
             _gameContext = contexts.game;
             _characterGroup = _gameContext.GetGroup(GameMatcher.ViewCharacterView);
