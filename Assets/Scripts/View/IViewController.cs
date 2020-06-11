@@ -11,6 +11,8 @@ namespace View
 
         Quaternion Rotation { get; set; }
 
+        IEntity GetEntity();
+
         bool Active { get; set; }
 
         void InitializeView(Contexts contexts, IEntity entity);

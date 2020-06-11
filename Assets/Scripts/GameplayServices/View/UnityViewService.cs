@@ -20,7 +20,7 @@ namespace View
             {
                 var assetId = gameEntity.viewAsset.value;
 
-                var viewObject = ObjectPool.Spawn("Prefabs/" + assetId.ToString());
+                var viewObject = ObjectPool.Spawn("Prefabs/Characters/" + assetId.ToString());
                 if (viewObject == null)
                 {
                     entity.Destroy();

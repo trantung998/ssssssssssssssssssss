@@ -4,12 +4,13 @@ namespace Character
 {
     public enum CharacterStatId
     {
-        MaxHp,
+        Hp,
         Damage,
         Armor,
         MoveSpeed,
         CriticalChange,
         CriticalDamageScale,
+        AttackRange,
     }
 
     public class BaseStat

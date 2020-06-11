@@ -10,14 +10,13 @@ namespace View.Character
     {
         [SerializeField] private TextMeshPro healthValueText;
         [SerializeField] private Transform effectTransformParent;
-
-        private CharacterStatsComponent _statsComponent;
+        
         private EffectViewsManager _effectViewsManager;
 
         public override void InitializeView(Contexts contexts, IEntity entity)
         {
             base.InitializeView(contexts, entity);
-            _statsComponent = _entity.characterCharacterStats;
+
             _entity.AddEffectDataChangedListener(this);
 
             _effectViewsManager = new EffectViewsManager();
@@ -36,8 +35,6 @@ namespace View.Character
 
             _effectViewsManager.CheckEffectsView();
             _effectViewsManager.UpdateViews(dt);
-
-//            healthValueText.text = "Hp: " + _statsComponent.value.health;
         }
 
         public void OnEffectDataChanged(GameEntity entity)

@@ -100,7 +100,7 @@ namespace Combat
             inputDamageValue = (inputDamageValue * damageMultiplier);
 
 
-            var targetHpValue = targetEntity.characterCharacterStats.GetStat(CharacterStatId.MaxHp);
+            var targetHpValue = targetEntity.characterCharacterStats.GetStat(CharacterStatId.Hp);
             if (targetHpValue == null)
             {
                 //lỗi

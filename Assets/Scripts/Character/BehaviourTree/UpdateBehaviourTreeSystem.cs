@@ -18,6 +18,7 @@ public class UpdateBehaviourTreeSystem : IExecuteSystem
     {
         //Update global clock
         _btService.Update(_timeService.DeltaTime);
+
         //update custom clocks
         foreach (var gameEntity in _entityGroup.GetEntities())
         {

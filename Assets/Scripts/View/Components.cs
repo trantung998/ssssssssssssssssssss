@@ -12,6 +12,8 @@ namespace View
     {
         DummyCharacter,
         DamageView,
+        
+        Knight_01 = 100,
     }
 
     [Game]

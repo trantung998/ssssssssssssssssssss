@@ -33,7 +33,6 @@ namespace Input
                 if (inputEntity.inputData.value.Type == InputType.TestNormalAttack)
                 {
                     var normalAttackInput = (TestNormalAttackInput) inputEntity.inputData.value;
-
                     var attackRequest = _gameContext.CreateEntity();
                     attackRequest.AddNormalAttackData(new NormalAttackData()
                     {

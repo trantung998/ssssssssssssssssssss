@@ -35,6 +35,22 @@ namespace GameplayServices.Input
                 var consumeMamanaEntity = _inputContext.CreateEntity();
                 consumeMamanaEntity.AddConsumeManaCommand(0, -5);
             }
+            else if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                Debug.Log("Input Spawn Character team 0");
+
+                var consumeMamanaEntity = _inputContext.CreateEntity();
+                consumeMamanaEntity.AddSpawnCharacter(new SpawnCharacterData(CharacterType.Creep, new Vector2(-2, 0), 0,
+                    1));
+            }
+            else if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                Debug.Log("Input Spawn Character team 1");
+
+                var consumeMamanaEntity = _inputContext.CreateEntity();
+                consumeMamanaEntity.AddSpawnCharacter(new SpawnCharacterData(CharacterType.Creep, new Vector2(2, 0), 1,
+                    1));
+            }
         }
     }
 }

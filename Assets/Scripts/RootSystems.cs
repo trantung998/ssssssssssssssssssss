@@ -25,9 +25,10 @@ public class GameSystems : Feature
         Add(new BattleTimeSystem(contexts));
         Add(new BattleManaSystem(contexts));
 
-        Add(new CreateDummyCharacterSystem(contexts));
-
         Add(new UpdateTickSystem(contexts));
+
+        Add(new SpawnCharacterSystem(contexts));
+
         Add(new CreateAssetViewSystem(contexts));
         Add(new ProcessAddEffectCommand(contexts));
 

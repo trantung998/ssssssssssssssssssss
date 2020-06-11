@@ -18,23 +18,26 @@ public static class GameComponentsLookup {
     public const int CharacterFollowCharacter = 7;
     public const int CharacterMovement = 8;
     public const int CharacterPosition = 9;
-    public const int CharacterPositionListener = 10;
-    public const int CombatEffectStatus = 11;
-    public const int DelayEntityDestroyed = 12;
-    public const int EffectDataChanged = 13;
-    public const int EffectDataChangedListener = 14;
-    public const int EffectData = 15;
-    public const int EntityDestroyed = 16;
-    public const int GameTimeTick = 17;
-    public const int IndicatorIndicator = 18;
-    public const int Mana = 19;
-    public const int NeedStatRetain = 20;
-    public const int NormalAttackData = 21;
-    public const int UpdateBattleTime = 22;
-    public const int ViewAsset = 23;
-    public const int ViewCharacterView = 24;
+    public const int CharacterCollision = 10;
+    public const int CharacterPositionListener = 11;
+    public const int CharacterState = 12;
+    public const int CharacterStateListener = 13;
+    public const int CombatEffectStatus = 14;
+    public const int DelayEntityDestroyed = 15;
+    public const int EffectDataChanged = 16;
+    public const int EffectDataChangedListener = 17;
+    public const int EffectData = 18;
+    public const int EntityDestroyed = 19;
+    public const int GameTimeTick = 20;
+    public const int IndicatorIndicator = 21;
+    public const int Mana = 22;
+    public const int NeedStatRetain = 23;
+    public const int NormalAttackData = 24;
+    public const int UpdateBattleTime = 25;
+    public const int ViewAsset = 26;
+    public const int ViewCharacterView = 27;
 
-    public const int TotalComponents = 25;
+    public const int TotalComponents = 28;
 
     public static readonly string[] componentNames = {
         "ActiveEffect",
@@ -47,7 +50,10 @@ public static class GameComponentsLookup {
         "CharacterFollowCharacter",
         "CharacterMovement",
         "CharacterPosition",
+        "CharacterCollision",
         "CharacterPositionListener",
+        "CharacterState",
+        "CharacterStateListener",
         "CombatEffectStatus",
         "DelayEntityDestroyed",
         "EffectDataChanged",
@@ -75,7 +81,10 @@ public static class GameComponentsLookup {
         typeof(Character.FollowCharacterComponent),
         typeof(Character.MovementComponent),
         typeof(Character.PositionComponent),
+        typeof(CharacterCollisionComponent),
         typeof(CharacterPositionListenerComponent),
+        typeof(CharacterStateComponent),
+        typeof(CharacterStateListenerComponent),
         typeof(Combat.EffectStatusComponent),
         typeof(DelayEntityDestroyedComponent),
         typeof(EffectDataChangedComponent),

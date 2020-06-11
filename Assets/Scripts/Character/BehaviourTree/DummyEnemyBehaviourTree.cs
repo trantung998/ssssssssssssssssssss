@@ -1,6 +1,7 @@
 using Entitas;
 using NPBehave;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class DummyEnemyBehaviourTree : IBTController
 {
@@ -23,8 +24,13 @@ public class DummyEnemyBehaviourTree : IBTController
     {
         myThrottledClock = new Clock();
 
-        Node mainTree = new Service(0.125f,
-            () => { blackboard["position"] = _entity.characterPosition.value; },
+        Node mainTree = new Service(
+            () =>
+            {
+                blackboard["position"] = _entity.characterPosition.value;
+            },
+            new Selector(new Condition(TestStopSelf, Stops.SELF, new Action(() => { Debug.Log("Node 1"); })),
+                new Action(() => { Debug.Log("Node 2"); })) /*,
             new Selector(
                 new Condition(IsOutOfBound, Stops.IMMEDIATE_RESTART,
                     new Sequence(
@@ -34,7 +40,7 @@ public class DummyEnemyBehaviourTree : IBTController
                             Debug.Log("OOOOOOOO");
                         }),
                         new WaitUntilStopped())),
-                new Sequence(new Action(() => { Debug.Log("XXXXXXXXXXXX"); }), new WaitUntilStopped()))
+                new Sequence(new Action(() => { Debug.Log("XXXXXXXXXXXX"); }), new WaitUntilStopped()))*/
         );
 
         behaviorTree = new Root(new Blackboard(myThrottledClock), myThrottledClock, mainTree);
@@ -42,6 +48,12 @@ public class DummyEnemyBehaviourTree : IBTController
         blackboard["left"] = Vector2.left * 5f;
         blackboard["right"] = Vector2.right * 5f;
         behaviorTree.Start();
+    }
+
+    private bool TestStopSelf()
+    {
+        var random = Random.Range(0, 100);
+        return random > 20;
     }
 
     private bool IsOutOfBound()

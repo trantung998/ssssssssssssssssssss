@@ -27,6 +27,13 @@ namespace View
             set { transform.rotation = value; }
         }
 
+        public IEntity GetEntity { get; set; }
+
+        IEntity IViewController.GetEntity()
+        {
+            return _entity;
+        }
+
         public bool Active
         {
             get { return gameObject.activeSelf; }
