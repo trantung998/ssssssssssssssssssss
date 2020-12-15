@@ -1,4 +1,5 @@
 using ServerSide.Battle.ECS.GameTime;
+using ServerSide.Battle.Logger;
 using Svelto.ECS;
 
 namespace ServerSide.Battle.ECS.Movement
@@ -6,6 +7,12 @@ namespace ServerSide.Battle.ECS.Movement
     public class MoveEngine : IGameEngine, IQueryingEntitiesEngine
     {
         public EntitiesDB entitiesDB { get; set; }
+        private ILog _log;
+
+        public MoveEngine(ILog log)
+        {
+            _log = log;
+        }
 
         public void Ready()
         {
@@ -23,6 +30,7 @@ namespace ServerSide.Battle.ECS.Movement
                 {
                     ref var moveComponent = ref moveComponents[i];
                     moveComponent.position = moveComponent.position + moveComponent.dir * (moveComponent.moveSpeed * dt);
+                    _log.Debug("New Pos " + moveComponent.position);
                 }
             }
         }

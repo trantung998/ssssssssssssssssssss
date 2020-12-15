@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using ServerSide.Battle.ECS.Character;
 using ServerSide.Battle.ECS.GameTime;
+using ServerSide.Battle.ECS.Movement;
 using ServerSide.Battle.Logger;
 using Svelto.ECS;
 
@@ -25,10 +27,19 @@ namespace ServerSide.Battle.ECS
             var entityFunctions = _enginesRoot.GenerateEntityFunctions();
 
             var gameTimeEngine = new GameTimeEngine(entityFactory, simpleSubmissionEntityViewScheduler, log);
-            _enginesRoot.AddEngine(gameTimeEngine);
-            _gameEngines.Add(gameTimeEngine);
-            
-            
+            AddEngine(gameTimeEngine);
+
+            var spawnCharacterEngine = new SpawnCharacterEngine(entityFactory, simpleSubmissionEntityViewScheduler, log);
+            AddEngine(spawnCharacterEngine);
+
+            var moveEngine = new MoveEngine(log);
+            AddEngine(moveEngine);
+        }
+
+        private void AddEngine(IGameEngine engine)
+        {
+            _enginesRoot.AddEngine(engine);
+            _gameEngines.Add(engine);
         }
 
         public void OnUpdate()
