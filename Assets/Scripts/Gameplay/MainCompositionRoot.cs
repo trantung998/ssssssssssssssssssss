@@ -36,7 +36,9 @@ namespace Gameplay
             var entityFunctions = _enginesRoot.GenerateEntityFunctions();
             var entityStreamConsumerFactory = _enginesRoot.GenerateConsumerFactory();
 
+            //services
             ITime _timeService = new UnityTimeService();
+            ObjectPool _objectPool = ObjectPool.instance;
         }
     }
 }
