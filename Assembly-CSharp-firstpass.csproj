@@ -69,9 +69,6 @@
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>E:/ssssssssssssssssssss/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
- <Reference Include="Svelto.Common">
- <HintPath>E:/ssssssssssssssssssss/Library/ScriptAssemblies/Svelto.Common.dll</HintPath>
- </Reference>
  <Reference Include="Unity.2D.Animation.Runtime">
  <HintPath>E:/ssssssssssssssssssss/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
  </Reference>
@@ -80,9 +77,6 @@
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>E:/ssssssssssssssssssss/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Svelto.Pool.Debugger">
- <HintPath>E:/ssssssssssssssssssss/Library/ScriptAssemblies/Svelto.Pool.Debugger.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.SpriteShape.Editor">
  <HintPath>E:/ssssssssssssssssssss/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
@@ -119,9 +113,6 @@
  </Reference>
  <Reference Include="Unity.InternalAPIEngineBridge.001">
  <HintPath>E:/ssssssssssssssssssss/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
- </Reference>
- <Reference Include="Svelto.ECS">
- <HintPath>E:/ssssssssssssssssssss/Library/ScriptAssemblies/Svelto.ECS.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Sprite.Editor">
  <HintPath>E:/ssssssssssssssssssss/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
