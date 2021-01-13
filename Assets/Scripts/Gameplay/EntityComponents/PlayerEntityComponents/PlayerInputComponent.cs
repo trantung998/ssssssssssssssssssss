@@ -1,10 +1,11 @@
-﻿using Gameplay.Services;
-using Svelto.ECS;
+﻿using Svelto.ECS;
 
 namespace Gameplay.EntityComponents.PlayerEntityComponents
 {
     public struct PlayerInputComponent : IEntityComponent
     {
-        public IInput inputData;
+        public bool isSpawnCharacter;
+        public float VerticalValue;
+        public float HorizontalValue;
     }
 }

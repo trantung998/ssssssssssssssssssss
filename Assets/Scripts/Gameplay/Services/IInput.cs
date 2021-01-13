@@ -4,7 +4,7 @@ namespace Gameplay.Services
 {
     public interface IInput
     {
-        KeyCode KeyCode { get; set; }
+        bool IsSpawnCharacter { get; set; }
 
         float VerticalValue { get; set; }
 
@@ -15,13 +15,27 @@ namespace Gameplay.Services
     {
         public UnityInputService()
         {
-            KeyCode = KeyCode.None;
+            IsSpawnCharacter = false;
             VerticalValue = 0;
             HorizontalValue = 0;
         }
 
-        public KeyCode KeyCode { get; set; }
-        public float VerticalValue { get; set; }
-        public float HorizontalValue { get; set; }
+        public bool IsSpawnCharacter
+        {
+            get => Input.GetKeyDown(KeyCode.A);
+            set { }
+        }
+
+        public float VerticalValue
+        {
+            get => Input.GetAxis("Horizontal");
+            set { }
+        }
+
+        public float HorizontalValue
+        {
+            get => Input.GetAxis("Vertical");
+            set { }
+        }
     }
 }
