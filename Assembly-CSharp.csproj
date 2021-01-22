@@ -320,13 +320,18 @@
      <Compile Include="Assets\Doozy\Integrations\Playmaker\Scripts\PlaymakerEventDispatcher.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Engines\PlayerEngines\PlayerInputEngine.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Engines\SortedTickedEnginesOrder.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Engines\TickEnginesGroup.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Engines\UnsortedEnginesGroups.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\EntityComponents\MovementComponent.cs" />
      <Compile Include="Assets\Scripts\Gameplay\EntityComponents\PlayerEntityComponents\PlayerInputComponent.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\EntityComponents\PlayerEntityComponents\UnityViewCompoents\IPositionComponent.cs" />
      <Compile Include="Assets\Scripts\Gameplay\EntityDescriptors\PlayerEntityDescriptors\PlayerInputDescriptor.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Factories\GameObjectFactory.cs" />
      <Compile Include="Assets\Scripts\Gameplay\GameGroups.cs" />
      <Compile Include="Assets\Scripts\Gameplay\MainCompositionRoot.cs" />
      <Compile Include="Assets\Scripts\Gameplay\MainContext.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Services\IInput.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Services\ILogService.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Services\ITime.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Services\ObjectPool.cs" />
      <Compile Include="Assets\Scripts\Test\TestSceneManager.cs" />
@@ -1042,6 +1047,18 @@
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{14E4712A-3262-AEE4-3F4E-F5CAA497A364}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
+    <ProjectReference Include="Svelto.Common.csproj">
+      <Project>{FEC31707-9643-7B7A-2C33-18E2EF11859C}</Project>
+      <Name>Svelto.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="Svelto.ECS.csproj">
+      <Project>{6DF3640A-6E83-676A-2EE6-92CC9CE64BC9}</Project>
+      <Name>Svelto.ECS</Name>
+    </ProjectReference>
+    <ProjectReference Include="Svelto.Pool.Debugger.csproj">
+      <Project>{3425722D-F7BD-FE5F-AA18-A903648E78B1}</Project>
+      <Name>Svelto.Pool.Debugger</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

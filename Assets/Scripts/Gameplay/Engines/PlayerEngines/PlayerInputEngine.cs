@@ -12,40 +12,47 @@ namespace Gameplay.Engines.PlayerEngines
         IEnumerator _readInput;
         private IInput _input;
         private IEntityFactory m_entityFactory;
-        private UnityEntitiesSubmissionScheduler m_submissionScheduler;
+
+        public PlayerInputEngine(IEntityFactory entityFactory, IInput input)
+        {
+            _input = input;
+            m_entityFactory = entityFactory;
+        }
 
         public void Ready()
         {
             var initializer = m_entityFactory.BuildEntity<PlayerInputDescriptor>(0, GameGroups.UserInputGroup.BuildGroup);
+            _readInput = ReadInput();
         }
 
         public EntitiesDB entitiesDB { get; set; }
 
         public void Step()
         {
+            _readInput.MoveNext();
         }
 
         public string name => nameof(PlayerInputEngine);
 
 
-        void SetDataInput()
-        {
-            foreach (var ((userInputs, count), @group) in entitiesDB.QueryEntities<PlayerInputComponent>(GameGroups.UserInputGroup.Groups))
-            {
-                for (int i = 0; i < count; i++)
-                {
-                    userInputs[i].HorizontalValue = _input.HorizontalValue;
-                    userInputs[i].VerticalValue = _input.VerticalValue;
-                    userInputs[i].isSpawnCharacter = _input.IsSpawnCharacter;
-                }
-            }
-        }
-
         IEnumerator ReadInput()
         {
+            void SetDataInput()
+            {
+                foreach (var ((userInputs, count), @group) in entitiesDB.QueryEntities<PlayerInputComponent>(GameGroups.UserInputGroup.Groups))
+                {
+                    for (int i = 0; i < count; i++)
+                    {
+                        userInputs[i].HorizontalValue = _input.HorizontalValue;
+                        userInputs[i].VerticalValue = _input.VerticalValue;
+                        userInputs[i].isSpawnCharacter = _input.IsSpawnCharacter;
+                    }
+                }
+            }
+
             while (true)
             {
-                // IteratePlayersInput(userInputGroup);
+                SetDataInput();
 
                 yield return null;
             }

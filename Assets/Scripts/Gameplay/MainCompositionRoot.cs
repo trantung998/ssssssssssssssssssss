@@ -1,5 +1,8 @@
-﻿using Gameplay.Services;
+﻿using Gameplay.Engines;
+using Gameplay.Engines.PlayerEngines;
+using Gameplay.Services;
 using Svelto.Context;
+using Svelto.DataStructures;
 using Svelto.ECS;
 using Svelto.ECS.Schedulers.Unity;
 using UnityEngine;
@@ -39,6 +42,21 @@ namespace Gameplay
             //services
             ITime _timeService = new UnityTimeService();
             ObjectPool _objectPool = ObjectPool.instance;
+            IInput input = new UnityInputService();
+            var playInputEngine = new PlayerInputEngine(entityFactory, input);
+
+            _enginesRoot.AddEngine(playInputEngine);
+
+            var unsortedEngines = new UnsortedEnginesGroups(new FasterList<IStepEngine>(new IStepEngine[]
+            {
+                playInputEngine
+            }));
+
+            var tickEngine = new TickEnginesGroup(new FasterList<IStepEngine>(new IStepEngine[]
+            {
+                unsortedEngines
+            }));
+            _enginesRoot.AddEngine(tickEngine);
         }
     }
 }

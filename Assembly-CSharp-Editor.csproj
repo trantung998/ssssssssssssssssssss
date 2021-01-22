@@ -971,6 +971,18 @@
       <Project>{3CC652C2-464B-FAE5-85F1-90B8BC398AC1}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
+    <ProjectReference Include="Svelto.Common.csproj">
+      <Project>{FEC31707-9643-7B7A-2C33-18E2EF11859C}</Project>
+      <Name>Svelto.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="Svelto.ECS.csproj">
+      <Project>{6DF3640A-6E83-676A-2EE6-92CC9CE64BC9}</Project>
+      <Name>Svelto.ECS</Name>
+    </ProjectReference>
+    <ProjectReference Include="Svelto.Pool.Debugger.csproj">
+      <Project>{3425722D-F7BD-FE5F-AA18-A903648E78B1}</Project>
+      <Name>Svelto.Pool.Debugger</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

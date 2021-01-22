@@ -691,6 +691,20 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.13f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
  </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Svelto.Common.csproj">
+      <Project>{FEC31707-9643-7B7A-2C33-18E2EF11859C}</Project>
+      <Name>Svelto.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="Svelto.ECS.csproj">
+      <Project>{6DF3640A-6E83-676A-2EE6-92CC9CE64BC9}</Project>
+      <Name>Svelto.ECS</Name>
+    </ProjectReference>
+    <ProjectReference Include="Svelto.Pool.Debugger.csproj">
+      <Project>{3425722D-F7BD-FE5F-AA18-A903648E78B1}</Project>
+      <Name>Svelto.Pool.Debugger</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
